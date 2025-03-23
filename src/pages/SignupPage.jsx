@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   Box,
   Container,
@@ -15,45 +15,63 @@ import {
   Link,
   Checkbox,
   FormControlLabel,
-} from "@mui/material"
-import { Visibility, VisibilityOff } from "@mui/icons-material"
-import FacebookIcon from "@mui/icons-material/Facebook"
-import GoogleIcon from "@mui/icons-material/Google"
-import RecyclingIcon from "@mui/icons-material/Recycling"
-import { Link as RouterLink } from "react-router-dom"
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
+import RecyclingIcon from "@mui/icons-material/Recycling";
+import { Link as RouterLink } from "react-router-dom";
 
 const SignupPage = () => {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [agreedToTerms, setAgreedToTerms] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   // Form fields
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleClickShowPassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   const handleClickShowConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword)
-  }
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle signup logic here
-    console.log("Signup with:", { firstName, lastName, email, phone, password })
-  }
+    console.log("Signup with:", {
+      firstName,
+      lastName,
+      email,
+      phone,
+      password,
+    });
+  };
 
   return (
-    <Container component="main" maxWidth="lg" sx={{ py: 8, minHeight: "calc(100vh - 64px - 300px)" }}>
+    <Container
+      component="main"
+      maxWidth="lg"
+      sx={{ py: 8, minHeight: "calc(100vh - 64px - 300px)" }}
+    >
       <Grid container sx={{ height: "100%" }}>
         {/* Left side - Signup form */}
-        <Grid item xs={12} md={6} component={Paper} elevation={6} square sx={{ borderRadius: { md: "8px 0 0 8px" } }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          component={Paper}
+          elevation={6}
+          square
+          sx={{ borderRadius: { md: "8px 0 0 8px" } }}
+        >
           <Box
             sx={{
               my: 4,
@@ -79,7 +97,9 @@ const SignupPage = () => {
                 },
               }}
             >
-              <RecyclingIcon sx={{ color: "primary.main", mr: 1, fontSize: 30 }} />
+              <RecyclingIcon
+                sx={{ color: "primary.main", mr: 1, fontSize: 30 }}
+              />
               <Typography component="h1" variant="h5">
                 <Box component="span" sx={{ color: "primary.main" }}>
                   Zero
@@ -88,11 +108,20 @@ const SignupPage = () => {
               </Typography>
             </Box>
 
-            <Typography component="h1" variant="h4" sx={{ mb: 3, fontWeight: 700 }}>
+            <Typography
+              component="h1"
+              variant="h4"
+              sx={{ mb: 3, fontWeight: 700 }}
+            >
               Join the Zero Waste community
             </Typography>
 
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ width: "100%", mt: 1 }}>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ width: "100%", mt: 1 }}
+            >
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -188,7 +217,11 @@ const SignupPage = () => {
                             onClick={handleClickShowConfirmPassword}
                             edge="end"
                           >
-                            {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                            {showConfirmPassword ? (
+                              <VisibilityOff />
+                            ) : (
+                              <Visibility />
+                            )}
                           </IconButton>
                         </InputAdornment>
                       ),
@@ -207,7 +240,11 @@ const SignupPage = () => {
                     label={
                       <Typography variant="body2">
                         By signing up, you agree to our{" "}
-                        <Link component={RouterLink} to="/terms" color="primary">
+                        <Link
+                          component={RouterLink}
+                          to="/terms"
+                          color="primary"
+                        >
                           Terms and Conditions
                         </Link>
                         .
@@ -229,13 +266,24 @@ const SignupPage = () => {
 
               <Box sx={{ display: "flex", alignItems: "center", my: 2 }}>
                 <Divider sx={{ flexGrow: 1 }} />
-                <Typography variant="body2" color="text.secondary" sx={{ mx: 2 }}>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mx: 2 }}
+                >
                   OR
                 </Typography>
                 <Divider sx={{ flexGrow: 1 }} />
               </Box>
 
-              <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 2,
+                  mb: 2,
+                }}
+              >
                 <Button
                   variant="outlined"
                   startIcon={<FacebookIcon />}
@@ -243,7 +291,10 @@ const SignupPage = () => {
                     flex: 1,
                     borderColor: "#1877F2",
                     color: "#1877F2",
-                    "&:hover": { borderColor: "#166FE5", bgcolor: "rgba(24, 119, 242, 0.04)" },
+                    "&:hover": {
+                      borderColor: "#166FE5",
+                      bgcolor: "rgba(24, 119, 242, 0.04)",
+                    },
                   }}
                 >
                   Facebook
@@ -255,7 +306,10 @@ const SignupPage = () => {
                     flex: 1,
                     borderColor: "#DB4437",
                     color: "#DB4437",
-                    "&:hover": { borderColor: "#C53929", bgcolor: "rgba(219, 68, 55, 0.04)" },
+                    "&:hover": {
+                      borderColor: "#C53929",
+                      bgcolor: "rgba(219, 68, 55, 0.04)",
+                    },
                   }}
                 >
                   Google
@@ -265,7 +319,12 @@ const SignupPage = () => {
               <Box sx={{ mt: 2, textAlign: "center" }}>
                 <Typography variant="body2" color="text.secondary">
                   Already have an account?{" "}
-                  <Link component={RouterLink} to="/login" color="primary" fontWeight="medium">
+                  <Link
+                    component={RouterLink}
+                    to="/login"
+                    color="primary"
+                    fontWeight="medium"
+                  >
                     Login
                   </Link>
                 </Typography>
@@ -292,7 +351,7 @@ const SignupPage = () => {
           xs={false}
           md={6}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random/?sustainability,green)",
+            backgroundImage: "url(/images/signup.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) => t.palette.grey[50],
             backgroundSize: "cover",
@@ -302,8 +361,7 @@ const SignupPage = () => {
         />
       </Grid>
     </Container>
-  )
-}
+  );
+};
 
-export default SignupPage
-
+export default SignupPage;

@@ -26,7 +26,7 @@ const Services = () => {
       title: "Recycling Services",
       description: "Our comprehensive recycling services make it easy to responsibly dispose of various materials.",
       icon: RecyclingIcon,
-      image: "https://source.unsplash.com/800x600/?recycling",
+      image: "/images/recycle.jpg",
       features: [
         "Convenient pickup scheduling",
         "Sorting and processing of recyclables",
@@ -38,7 +38,7 @@ const Services = () => {
       title: "Marketplace",
       description: "Buy and sell second-hand items to extend their lifecycle and reduce waste.",
       icon: ShoppingBagIcon,
-      image: "https://source.unsplash.com/800x600/?marketplace",
+      image: "/images/market.jpg",
       features: [
         "Secure payment processing",
         "Verified seller profiles",
@@ -50,14 +50,14 @@ const Services = () => {
       title: "Community Programs",
       description: "Join local initiatives and connect with like-minded individuals in your area.",
       icon: GroupsIcon,
-      image: "https://source.unsplash.com/800x600/?community",
+      image: "/images/team.jpg",
       features: ["Local cleanup events", "Community challenges", "Networking opportunities", "Collaborative projects"],
     },
     {
       title: "Educational Resources",
       description: "Learn about sustainability practices and how to reduce your environmental footprint.",
       icon: SchoolIcon,
-      image: "https://source.unsplash.com/800x600/?education",
+      image: "/images/books.jpg",
       features: [
         "Online courses and workshops",
         "Recycling guides and tutorials",

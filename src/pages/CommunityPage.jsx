@@ -41,7 +41,7 @@ const posts = [
     date: "2 hours ago",
     content:
       "Just finished organizing our neighborhood cleanup event! We collected over 50 bags of trash and recyclables. So proud of our community for coming together for this cause. #ZeroWaste #CommunityCleanup",
-    image: "https://source.unsplash.com/800x400/?cleanup,community",
+    image: "/images/cleanup.jpg",
     likes: 42,
     comments: 8,
     shares: 12,
@@ -72,7 +72,7 @@ const posts = [
     date: "3 days ago",
     content:
       "I just completed my first month of composting and I'm amazed at how much it has reduced my household waste! If anyone needs tips on getting started with composting in small spaces, feel free to ask!",
-    image: "https://source.unsplash.com/800x400/?compost,garden",
+    image: "/images/compost2.jpg",
     likes: 35,
     comments: 14,
     shares: 5,

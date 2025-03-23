@@ -202,7 +202,7 @@ const LoginPage = () => {
           xs={false}
           md={6}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random/?recycling,nature)",
+            backgroundImage: "url(/images/login.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) => t.palette.grey[50],
             backgroundSize: "cover",

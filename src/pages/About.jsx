@@ -7,35 +7,35 @@ const About = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Emma Johnson",
-      role: "Founder & CEO",
+      name: "Fatma Ibrahim",
+      role: "Tester",
       bio: "Environmental scientist with 10+ years of experience in waste management and sustainability initiatives.",
       image: "/images/team-member-1.jpg",
     },
     {
       id: 2,
-      name: "David Chen",
+      name: "Toqa Ahmed",
       role: "CTO",
       bio: "Tech innovator with a passion for creating digital solutions to environmental challenges.",
       image: "/images/team-member-2.jpg",
     },
     {
       id: 3,
-      name: "Sarah Williams",
-      role: "Head of Operations",
+      name: "Omar Youssef",
+      role: "Team Leader",
       bio: "Operations expert focused on creating efficient and sustainable business processes.",
       image: "/images/team-member-3.jpg",
     },
     {
       id: 4,
-      name: "Michael Rodriguez",
+      name: "Arwa Mohammed",
       role: "Community Manager",
       bio: "Community builder dedicated to fostering connections between eco-conscious individuals.",
       image: "/images/team-member-4.jpg",
     },
     {
       id: 5,
-      name: "Olivia Thompson",
+      name: "Mohab Ehab",
       role: "Sustainability Director",
       bio: "Environmental policy specialist working to implement best practices in sustainability.",
       image: "/images/team-member-5.jpg",
@@ -104,7 +104,7 @@ const About = () => {
           <Grid item xs={12} md={6}>
             <Box
               component="img"
-              src="/placeholder.svg?height=400&width=600"
+              src="/images/teamwork.jpg?height=400&width=600"
               alt="Zero Waste team working together"
               sx={{
                 width: "100%",
