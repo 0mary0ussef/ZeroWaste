@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Link as RouterLink, useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Box,
   Container,
@@ -17,9 +17,9 @@ import {
   Tabs,
   Tab,
   InputAdornment,
-} from "@mui/material"
-import SearchIcon from "@mui/icons-material/Search"
-import AddIcon from "@mui/icons-material/Add"
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import AddIcon from "@mui/icons-material/Add";
 
 const items = [
   {
@@ -94,28 +94,28 @@ const items = [
     rating: 4.8,
     category: "electronics",
   },
-]
+];
 
 const MarketplacePage = () => {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [tabValue, setTabValue] = useState("all")
-  const navigate = useNavigate()
+  const [searchQuery, setSearchQuery] = useState("");
+  const [tabValue, setTabValue] = useState("all");
+  const navigate = useNavigate();
 
   const handleTabChange = (event, newValue) => {
-    setTabValue(newValue)
-  }
+    setTabValue(newValue);
+  };
 
   const filteredItems = items.filter((item) => {
     const searchMatch =
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchQuery.toLowerCase())
-    const categoryMatch = tabValue === "all" || item.category === tabValue
-    return searchMatch && categoryMatch
-  })
+      item.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const categoryMatch = tabValue === "all" || item.category === tabValue;
+    return searchMatch && categoryMatch;
+  });
 
   const handleItemClick = (itemId) => {
-    navigate(`/item/${itemId}`)
-  }
+    navigate(`/item/${itemId}`);
+  };
 
   return (
     <Box sx={{ bgcolor: "background.default", minHeight: "100vh", pb: 8 }}>
@@ -134,7 +134,9 @@ const MarketplacePage = () => {
             Marketplace
           </Typography>
 
-          <Box sx={{ display: "flex", gap: 2, width: { xs: "100%", md: "auto" } }}>
+          <Box
+            sx={{ display: "flex", gap: 2, width: { xs: "100%", md: "auto" } }}
+          >
             <Box sx={{ position: "relative", flexGrow: 1 }}>
               <TextField
                 placeholder="Search items..."
@@ -209,20 +211,42 @@ const MarketplacePage = () => {
                 }}
               >
                 <CardActionArea onClick={() => handleItemClick(item.id)}>
-                  <CardMedia component="img" height="200" image={item.imageUrl} alt={item.name} />
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image={item.imageUrl}
+                    alt={item.name}
+                  />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h6" component="div">
                       {item.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ mb: 1 }}
+                    >
                       {item.description}
                     </Typography>
-                    <Typography variant="h6" sx={{ fontWeight: 600, color: "primary.main" }}>
+                    <Typography
+                      variant="h6"
+                      sx={{ fontWeight: 600, color: "primary.main" }}
+                    >
                       ${item.price}
                     </Typography>
                     <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-                      <Rating name="read-only" value={item.rating} precision={0.1} readOnly size="small" />
-                      <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
+                      <Rating
+                        name="read-only"
+                        value={item.rating}
+                        precision={0.1}
+                        readOnly
+                        size="small"
+                      />
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ ml: 1 }}
+                      >
                         ({item.rating})
                       </Typography>
                     </Box>
@@ -234,8 +258,7 @@ const MarketplacePage = () => {
         </Grid>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export default MarketplacePage
-
+export default MarketplacePage;

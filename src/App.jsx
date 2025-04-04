@@ -1,23 +1,24 @@
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Services from "./pages/Services";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import MarketplacePage from "./pages/MarketplacePage";
-import CommunityPage from "./pages/CommunityPage";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
-import RecyclingTipsPage from "./pages/RecyclingTipsPage";
-import ItemDetailsPage from "./pages/ItemDetailsPage";
-import PaymentPage from "./pages/PaymentPage";
-import PaymentSuccessPage from "./pages/PaymentSuccessPage";
-import ListItemPage from "./pages/ListItemPage";
-import ProfilePage from "./pages/ProfilePage";
-import AdminDashboard from "./pages/AdminDashboard"; // Import the new AdminDashboard
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+import CssBaseline from "@mui/material/CssBaseline"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Home from "./pages/Home"
+import About from "./pages/About"
+import Contact from "./pages/Contact"
+import Services from "./pages/Services"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+import MarketplacePage from "./pages/MarketplacePage"
+import CommunityPage from "./pages/CommunityPage"
+import LoginPage from "./pages/LoginPage"
+import SignupPage from "./pages/SignupPage"
+import RecyclingTipsPage from "./pages/RecyclingTipsPage"
+import ItemDetailsPage from "./pages/ItemDetailsPage"
+import PaymentPage from "./pages/PaymentPage"
+import PaymentSuccessPage from "./pages/PaymentSuccessPage"
+import ListItemPage from "./pages/ListItemPage"
+import ProfilePage from "./pages/ProfilePage"
+import AdminDashboard from "./pages/AdminDashboard"
+import ScrollToTop from "./components/ScrollToTop" // Import the ScrollToTop component
 
 // Update the theme configuration to use better fonts and the requested color scheme
 const theme = createTheme({
@@ -83,13 +84,14 @@ const theme = createTheme({
       },
     },
   },
-});
+})
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
+        <ScrollToTop /> {/* Add the ScrollToTop component here */}
         <Routes>
           {/* Admin Dashboard Route - No Navbar/Footer */}
           <Route path="/admin/*" element={<AdminDashboard />} />
@@ -111,17 +113,11 @@ function App() {
                     <Route path="/community" element={<CommunityPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignupPage />} />
-                    <Route
-                      path="/recycling-tips"
-                      element={<RecyclingTipsPage />}
-                    />
+                    <Route path="/recycling-tips" element={<RecyclingTipsPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/item/:id" element={<ItemDetailsPage />} />
                     <Route path="/payment" element={<PaymentPage />} />
-                    <Route
-                      path="/payment-success"
-                      element={<PaymentSuccessPage />}
-                    />
+                    <Route path="/payment-success" element={<PaymentSuccessPage />} />
                   </Routes>
                 </main>
                 <Footer />
@@ -131,7 +127,8 @@ function App() {
         </Routes>
       </Router>
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App
+

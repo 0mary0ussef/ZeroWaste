@@ -384,7 +384,7 @@ const ProfilePage = () => {
               </Grid>
             </Paper>
 
-            <Paper sx={{ p: 3, borderRadius: 2, mb: 3 }}>
+            <Paper sx={{ p: 3, borderRadius: 2, mb: 3,mt:3 }}>
               <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                 Recycling Points
               </Typography>
