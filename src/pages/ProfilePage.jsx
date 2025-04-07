@@ -41,10 +41,10 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping"
 
 // Mock user data
 const userData = {
-  name: "Emma Johnson",
-  email: "emma.johnson@example.com",
-  phone: "+1 (234) 567-8900",
-  address: "123 Green Street, Eco City, EC 12345",
+  name: "Omar Youssef",
+  email: "omaryoussef@example.com",
+  phone: "+20 102 764 3232",
+  address: "6 October",
   bio: "Environmental enthusiast passionate about sustainable living and zero waste practices. I believe small changes can make a big difference!",
   avatar: "https://source.unsplash.com/300x300/?portrait,woman",
   joinDate: "January 2023",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box,
   Container,
@@ -15,6 +16,7 @@ import {
   Link,
   Checkbox,
   FormControlLabel,
+  Alert,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -23,9 +25,13 @@ import RecyclingIcon from "@mui/icons-material/Recycling";
 import { Link as RouterLink } from "react-router-dom";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [formError, setFormError] = useState("");
+  const [formSuccess, setFormSuccess] = useState("");
 
   // Form fields
   const [firstName, setFirstName] = useState("");
@@ -43,16 +49,81 @@ const SignupPage = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    // First name validation
+    if (!firstName.trim()) {
+      newErrors.firstName = "First name is required";
+    }
+
+    // Last name validation
+    if (!lastName.trim()) {
+      newErrors.lastName = "Last name is required";
+    }
+
+    // Email validation
+    if (!email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Phone validation
+    if (!phone) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^\+?[0-9\s\-$$$$]{10,15}$/.test(phone)) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+
+    // Password validation
+    if (!password) {
+      newErrors.password = "Password is required";
+    } else if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+
+    // Confirm password validation
+    if (!confirmPassword) {
+      newErrors.confirmPassword = "Please confirm your password";
+    } else if (confirmPassword !== password) {
+      newErrors.confirmPassword = "Passwords do not match";
+    }
+
+    // Terms agreement validation
+    if (!agreedToTerms) {
+      newErrors.agreedToTerms = "You must agree to the terms and conditions";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle signup logic here
-    console.log("Signup with:", {
-      firstName,
-      lastName,
-      email,
-      phone,
-      password,
-    });
+    setFormError("");
+    setFormSuccess("");
+
+    if (validateForm()) {
+      // In a real app, you would send this data to your backend
+      console.log("Signup with:", {
+        firstName,
+        lastName,
+        email,
+        phone,
+        password,
+      });
+
+      // Show success message
+      setFormSuccess(
+        "Account created successfully! Redirecting to login page..."
+      );
+
+      // Redirect to login page after a short delay
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
   };
 
   return (
@@ -116,6 +187,18 @@ const SignupPage = () => {
               Join the Zero Waste community
             </Typography>
 
+            {formError && (
+              <Alert severity="error" sx={{ width: "100%", mb: 2 }}>
+                {formError}
+              </Alert>
+            )}
+
+            {formSuccess && (
+              <Alert severity="success" sx={{ width: "100%", mb: 2 }}>
+                {formSuccess}
+              </Alert>
+            )}
+
             <Box
               component="form"
               noValidate
@@ -134,6 +217,8 @@ const SignupPage = () => {
                     autoFocus
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
+                    error={!!errors.firstName}
+                    helperText={errors.firstName}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -146,6 +231,8 @@ const SignupPage = () => {
                     autoComplete="family-name"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
+                    error={!!errors.lastName}
+                    helperText={errors.lastName}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -158,6 +245,8 @@ const SignupPage = () => {
                     autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    error={!!errors.email}
+                    helperText={errors.email}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -170,6 +259,8 @@ const SignupPage = () => {
                     autoComplete="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
+                    error={!!errors.phone}
+                    helperText={errors.phone}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -183,6 +274,8 @@ const SignupPage = () => {
                     autoComplete="new-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    error={!!errors.password}
+                    helperText={errors.password}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -209,6 +302,8 @@ const SignupPage = () => {
                     autoComplete="new-password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    error={!!errors.confirmPassword}
+                    helperText={errors.confirmPassword}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -251,6 +346,15 @@ const SignupPage = () => {
                       </Typography>
                     }
                   />
+                  {errors.agreedToTerms && (
+                    <Typography
+                      color="error"
+                      variant="caption"
+                      sx={{ display: "block", mt: 0.5 }}
+                    >
+                      {errors.agreedToTerms}
+                    </Typography>
+                  )}
                 </Grid>
               </Grid>
               <Button
@@ -259,7 +363,6 @@ const SignupPage = () => {
                 variant="contained"
                 color="primary"
                 sx={{ mt: 3, mb: 2, py: 1.5 }}
-                disabled={!agreedToTerms}
               >
                 Sign Up
               </Button>

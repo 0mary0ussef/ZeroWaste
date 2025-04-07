@@ -19,6 +19,7 @@ import ListItemPage from "./pages/ListItemPage"
 import ProfilePage from "./pages/ProfilePage"
 import AdminDashboard from "./pages/AdminDashboard"
 import ScrollToTop from "./components/ScrollToTop" // Import the ScrollToTop component
+import ImageLazyLoader from "./components/ImageLazyLoader" // Import the new component
 
 // Update the theme configuration to use better fonts and the requested color scheme
 const theme = createTheme({
@@ -91,7 +92,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <ScrollToTop /> {/* Add the ScrollToTop component here */}
+        <ScrollToTop />
+        <ImageLazyLoader /> {/* Add this line to enable lazy loading for all images */}
         <Routes>
           {/* Admin Dashboard Route - No Navbar/Footer */}
           <Route path="/admin/*" element={<AdminDashboard />} />

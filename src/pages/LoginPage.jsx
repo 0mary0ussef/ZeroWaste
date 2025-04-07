@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import {
   Box,
   Container,
@@ -15,6 +16,7 @@ import {
   Link,
   Checkbox,
   FormControlLabel,
+  Alert,
 } from "@mui/material"
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 import FacebookIcon from "@mui/icons-material/Facebook"
@@ -23,19 +25,56 @@ import RecyclingIcon from "@mui/icons-material/Recycling"
 import { Link as RouterLink } from "react-router-dom"
 
 const LoginPage = () => {
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
+  const [errors, setErrors] = useState({})
+  const [formError, setFormError] = useState("")
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
   }
 
+  const validateForm = () => {
+    const newErrors = {}
+
+    // Email validation
+    if (!email) {
+      newErrors.email = "Email is required"
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Please enter a valid email address"
+    }
+
+    // Password validation
+    if (!password) {
+      newErrors.password = "Password is required"
+    } else if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle login logic here
-    console.log("Login with:", { email, password, rememberMe })
+    setFormError("")
+
+    if (validateForm()) {
+      // In a real app, you would authenticate with a backend
+      console.log("Login with:", { email, password, rememberMe })
+
+      // Simulate authentication check
+      if (email === "user@example.com" && password === "password123") {
+        // Successful login - redirect to home page
+        navigate("/")
+      } else {
+        // Show generic error for demo purposes
+        setFormError("Invalid email or password. Try user@example.com / password123")
+      }
+    }
   }
 
   return (
@@ -81,6 +120,12 @@ const LoginPage = () => {
               Welcome Back
             </Typography>
 
+            {formError && (
+              <Alert severity="error" sx={{ width: "100%", mb: 2 }}>
+                {formError}
+              </Alert>
+            )}
+
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ width: "100%", mt: 1 }}>
               <TextField
                 margin="normal"
@@ -93,6 +138,8 @@ const LoginPage = () => {
                 autoFocus
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                error={!!errors.email}
+                helperText={errors.email}
               />
               <TextField
                 margin="normal"
@@ -105,6 +152,8 @@ const LoginPage = () => {
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                error={!!errors.password}
+                helperText={errors.password}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
