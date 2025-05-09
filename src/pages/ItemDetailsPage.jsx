@@ -43,11 +43,7 @@ const items = [
       "This authentic vintage leather jacket from the 1980s features a timeless design that never goes out of style. Made from genuine leather, it has been well-maintained and shows minimal signs of wear. The jacket includes a full-length zipper, two side pockets, and an interior pocket. Perfect for adding a retro touch to your wardrobe while reducing fashion waste.",
     price: 120,
     imageUrl: "/images/jackets.jpg",
-    additionalImages: [
-      "/images/jackets.jpg",
-      "/images/jackets.jpg",
-      "/images/jackets.jpg",
-    ],
+    additionalImages: ["/images/jackets.jpg", "/images/jackets.jpg", "/images/jackets.jpg"],
     rating: 4.5,
     reviews: 24,
     category: "clothing",
@@ -76,11 +72,7 @@ const items = [
       "This beautiful mid-century modern chair combines style and comfort. The chair features solid wood legs and a comfortable upholstered seat. Its timeless design will complement any living space while adding a touch of retro charm. By choosing this pre-loved piece, you're making an environmentally conscious decision to reduce furniture waste.",
     price: 250,
     imageUrl: "/images/chair.jpg",
-    additionalImages: [
-      "/images/chair.jpg",
-      "/images/chair.jpg",
-      "/images/chair.jpg",
-    ],
+    additionalImages: ["/images/chair.jpg", "/images/chair.jpg", "/images/chair.jpg"],
     rating: 4.8,
     reviews: 36,
     category: "furniture",
@@ -109,11 +101,7 @@ const items = [
       "Relive the golden age of gaming with this retro gaming console. This system comes with two controllers and 20 pre-installed classic games. It's in excellent working condition and has been well-maintained by its previous owner. Perfect for collectors or anyone looking to experience the joy of retro gaming while giving electronic devices a second life.",
     price: 80,
     imageUrl: "/images/console.jpg",
-    additionalImages: [
-      "/images/console.jpg",
-      "/images/console.jpg",
-      "/images/console.jpg",
-    ],
+    additionalImages: ["/images/console.jpg", "/images/console.jpg", "/images/console.jpg"],
     rating: 4.2,
     reviews: 18,
     category: "electronics",
@@ -142,11 +130,7 @@ const items = [
       'Add a splash of color to your home with this vibrant abstract painting. Created by a local artist using eco-friendly paints, this one-of-a-kind piece measures 24" x 36" and comes ready to hang. The painting features bold colors and dynamic brushstrokes that will make a statement in any room. By purchasing this artwork, you\'re supporting sustainable art practices.',
     price: 180,
     imageUrl: "/images/art.jpg",
-    additionalImages: [
-      "/images/art.jpg",
-      "/images/art.jpg",
-      "/images/art.jpg",
-    ],
+    additionalImages: ["/images/art.jpg", "/images/art.jpg", "/images/art.jpg"],
     rating: 4.6,
     reviews: 12,
     category: "art",
@@ -175,11 +159,7 @@ const items = [
       "This modern smartwatch offers all the features you need to stay connected and track your fitness goals. With heart rate monitoring, step counting, sleep tracking, and smartphone notifications, it's the perfect companion for an active lifestyle. The watch has been factory refurbished and is in excellent condition with a new battery. By choosing refurbished electronics, you're making an eco-friendly choice.",
     price: 150,
     imageUrl: "/images/watch.jpg",
-    additionalImages: [
-      "/images/watch.jpg",
-      "/images/watch.jpg",
-      "/images/watch.jpg",
-    ],
+    additionalImages: ["/images/watch.jpg", "/images/watch.jpg", "/images/watch.jpg"],
     rating: 4.7,
     reviews: 42,
     category: "electronics",
@@ -208,11 +188,7 @@ const items = [
       "This handcrafted wooden dining table is made from reclaimed oak, giving it character and environmental value. The table comfortably seats six people and features a smooth, polished surface with natural grain patterns that make each piece unique. The sturdy construction ensures this table will last for generations, making it a sustainable choice for your home.",
     price: 300,
     imageUrl: "/images/table.jpg",
-    additionalImages: [
-      "/images/table.jpg",
-      "/images/table.jpg",
-      "/images/table.jpg",
-    ],
+    additionalImages: ["/images/table.jpg", "/images/table.jpg", "/images/table.jpg"],
     rating: 4.9,
     reviews: 28,
     category: "furniture",
@@ -241,11 +217,7 @@ const items = [
       "Make a statement at your next event with this elegant designer dress. Previously worn only once for a photoshoot, this dress is in perfect condition. The flowing silhouette and high-quality fabric create a flattering look that's both comfortable and sophisticated. By choosing pre-loved designer clothing, you're participating in sustainable fashion practices.",
     price: 200,
     imageUrl: "/images/dress.jpg",
-    additionalImages: [
-      "/images/dress.jpg",
-      "/images/dress.jpg",
-      "/images/dress.jpg",
-    ],
+    additionalImages: ["/images/dress.jpg", "/images/dress.jpg", "/images/dress.jpg"],
     rating: 4.4,
     reviews: 15,
     category: "clothing",
@@ -274,11 +246,7 @@ const items = [
       "Immerse yourself in superior sound quality with these high-end headphones. Featuring noise cancellation technology and comfortable over-ear design, these headphones provide an exceptional listening experience. They have been professionally refurbished and tested to ensure they meet the original manufacturer's specifications. By choosing refurbished electronics, you're helping to reduce electronic waste.",
     price: 220,
     imageUrl: "/images/headphone.jpg",
-    additionalImages: [
-      "/images/headphone.jpg",
-      "/images/headphone.jpg",
-      "/images/headphone.jpg",
-    ],
+    additionalImages: ["/images/headphone.jpg", "/images/headphone.jpg", "/images/headphone.jpg"],
     rating: 4.8,
     reviews: 32,
     category: "electronics",
@@ -495,7 +463,7 @@ const ItemDetailsPage = () => {
               </Box>
 
               <Typography variant="h4" color="primary.main" sx={{ fontWeight: 700, mb: 3 }}>
-                ${item.price}
+                {item.price} EGP
               </Typography>
 
               <Typography variant="body1" paragraph>
@@ -557,7 +525,7 @@ const ItemDetailsPage = () => {
                     <ListItemIcon>
                       <LocalShippingIcon color="primary" />
                     </ListItemIcon>
-                    <ListItemText primary="Free shipping on orders over $50" />
+                    <ListItemText primary="Free shipping on orders over 50 EGP" />
                   </ListItem>
                   <ListItem>
                     <ListItemIcon>
@@ -620,7 +588,7 @@ const ItemDetailsPage = () => {
                 Shipping Information
               </Typography>
               <Typography variant="body2" paragraph>
-                We offer free shipping on all orders over $50. Standard shipping typically takes 3-5 business days.
+                We offer free shipping on all orders over 50 EGP. Standard shipping typically takes 3-5 business days.
               </Typography>
               <Typography variant="body2">
                 For more information about shipping options and rates, please contact the seller.
@@ -634,4 +602,3 @@ const ItemDetailsPage = () => {
 }
 
 export default ItemDetailsPage
-

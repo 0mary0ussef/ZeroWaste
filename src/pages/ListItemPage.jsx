@@ -233,7 +233,7 @@ const ListItemPage = () => {
                 name="price"
                 type="number"
                 InputProps={{
-                  startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                  startAdornment: <InputAdornment position="start">EGP</InputAdornment>,
                 }}
                 value={formData.price}
                 onChange={handleChange}
@@ -386,4 +386,3 @@ const ListItemPage = () => {
 }
 
 export default ListItemPage
-

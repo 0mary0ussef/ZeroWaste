@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 import {
   Box,
   CssBaseline,
@@ -33,33 +33,42 @@ import {
   InputAdornment,
   Tabs,
   Tab,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleIcon from "@mui/icons-material/People";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import InventoryIcon from "@mui/icons-material/Inventory";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import SettingsIcon from "@mui/icons-material/Settings";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import PersonIcon from "@mui/icons-material/Person";
-import LogoutIcon from "@mui/icons-material/Logout";
-import SearchIcon from "@mui/icons-material/Search";
-import AddIcon from "@mui/icons-material/Add";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import RecyclingIcon from "@mui/icons-material/Recycling";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import CategoryIcon from "@mui/icons-material/Category";
-import FeedbackIcon from "@mui/icons-material/Feedback";
-import EventIcon from "@mui/icons-material/Event";
-import { useNavigate, useLocation } from "react-router-dom";
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  CardMedia,
+  Stack,
+} from "@mui/material"
+import MenuIcon from "@mui/icons-material/Menu"
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
+import ChevronRightIcon from "@mui/icons-material/ChevronRight"
+import DashboardIcon from "@mui/icons-material/Dashboard"
+import PeopleIcon from "@mui/icons-material/People"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
+import InventoryIcon from "@mui/icons-material/Inventory"
+import BarChartIcon from "@mui/icons-material/BarChart"
+import SettingsIcon from "@mui/icons-material/Settings"
+import NotificationsIcon from "@mui/icons-material/Notifications"
+import PersonIcon from "@mui/icons-material/Person"
+import LogoutIcon from "@mui/icons-material/Logout"
+import SearchIcon from "@mui/icons-material/Search"
+import AddIcon from "@mui/icons-material/Add"
+import DeleteIcon from "@mui/icons-material/Delete"
+import EditIcon from "@mui/icons-material/Edit"
+import MoreVertIcon from "@mui/icons-material/MoreVert"
+import RecyclingIcon from "@mui/icons-material/Recycling"
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney"
+import CategoryIcon from "@mui/icons-material/Category"
+import FeedbackIcon from "@mui/icons-material/Feedback"
+import EventIcon from "@mui/icons-material/Event"
+import CheckCircleIcon from "@mui/icons-material/CheckCircle"
+import CancelIcon from "@mui/icons-material/Cancel"
+import VisibilityIcon from "@mui/icons-material/Visibility"
+import { useNavigate, useLocation } from "react-router-dom"
 
-const drawerWidth = 240;
-const collapsedDrawerWidth = 65;
+const drawerWidth = 240
+const collapsedDrawerWidth = 65
 
 // Mock data for dashboard
 const recentOrders = [
@@ -68,37 +77,37 @@ const recentOrders = [
     customer: "Emma Johnson",
     date: "2023-06-10",
     status: "Completed",
-    total: "$120.00",
+    total: "120.00 EGP",
   },
   {
     id: "#ORD-5330",
     customer: "David Chen",
     date: "2023-06-09",
     status: "Processing",
-    total: "$85.50",
+    total: "85.50 EGP",
   },
   {
     id: "#ORD-5329",
     customer: "Sarah Williams",
     date: "2023-06-09",
     status: "Completed",
-    total: "$220.00",
+    total: "220.00 EGP",
   },
   {
     id: "#ORD-5328",
     customer: "Michael Rodriguez",
     date: "2023-06-08",
     status: "Cancelled",
-    total: "$65.00",
+    total: "65.00 EGP",
   },
   {
     id: "#ORD-5327",
     customer: "Olivia Thompson",
     date: "2023-06-08",
     status: "Completed",
-    total: "$175.25",
+    total: "175.25 EGP",
   },
-];
+]
 
 // Update the recentUsers mock data to include points
 const recentUsers = [
@@ -150,7 +159,7 @@ const recentUsers = [
     status: "Active",
     points: 890,
   },
-];
+]
 
 // Add topUsers data for the ranking board
 const topUsers = [
@@ -184,57 +193,120 @@ const topUsers = [
     points: 890,
     avatar: "https://source.unsplash.com/100x100/?profile",
   },
-];
+]
 
 const recentListings = [
   {
     id: 1,
     name: "Vintage Leather Jacket",
     seller: "Emma Johnson",
-    price: "$120.00",
+    price: "120.00 EGP",
     status: "Active",
   },
   {
     id: 2,
     name: "Mid-Century Modern Chair",
     seller: "David Chen",
-    price: "$250.00",
+    price: "250.00 EGP",
     status: "Active",
   },
   {
     id: 3,
     name: "Retro Gaming Console",
     seller: "Sarah Williams",
-    price: "$80.00",
+    price: "80.00 EGP",
     status: "Sold",
   },
   {
     id: 4,
     name: "Abstract Art Painting",
     seller: "Michael Rodriguez",
-    price: "$180.00",
+    price: "180.00 EGP",
     status: "Active",
   },
-];
+]
+
+// Add pending listings data
+const pendingListings = [
+  {
+    id: 101,
+    name: "Handmade Ceramic Vase",
+    seller: "Alex Johnson",
+    price: "95.00 EGP",
+    description: "Beautiful handmade ceramic vase, perfect for any home decor. Made with eco-friendly materials.",
+    category: "Home Decor",
+    condition: "New",
+    dateSubmitted: "2023-06-12",
+    image: "/images/vase.jpg",
+  },
+  {
+    id: 102,
+    name: "Vintage Record Player",
+    seller: "Maya Patel",
+    price: "320.00 EGP",
+    description: "Fully functional vintage record player from the 1970s. Great sound quality and beautiful design.",
+    category: "Electronics",
+    condition: "Good",
+    dateSubmitted: "2023-06-11",
+    image: "/images/record-player.jpg",
+  },
+  {
+    id: 103,
+    name: "Handcrafted Wooden Bookshelf",
+    seller: "Thomas Wilson",
+    price: "450.00 EGP",
+    description: "Solid wood bookshelf made from reclaimed timber. Environmentally friendly and sturdy.",
+    category: "Furniture",
+    condition: "Excellent",
+    dateSubmitted: "2023-06-10",
+    image: "/images/bookshelf.jpg",
+  },
+]
 
 const AdminDashboard = () => {
-  const [open, setOpen] = useState(true);
-  const [selectedTab, setSelectedTab] = useState(0);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [open, setOpen] = useState(true)
+  const [selectedTab, setSelectedTab] = useState(0)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [pendingItems, setPendingItems] = useState(pendingListings)
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [itemDialogOpen, setItemDialogOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const toggleDrawer = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+    setMobileOpen(!mobileOpen)
+  }
 
   const handleTabChange = (event, newValue) => {
-    setSelectedTab(newValue);
-  };
+    setSelectedTab(newValue)
+  }
+
+  const handleViewItem = (item) => {
+    setSelectedItem(item)
+    setItemDialogOpen(true)
+  }
+
+  const handleCloseItemDialog = () => {
+    setItemDialogOpen(false)
+  }
+
+  const handleApproveItem = (itemId) => {
+    // In a real app, you would call an API to approve the item
+    setPendingItems(pendingItems.filter((item) => item.id !== itemId))
+    setItemDialogOpen(false)
+    // Show success notification or feedback
+  }
+
+  const handleRejectItem = (itemId) => {
+    // In a real app, you would call an API to reject the item
+    setPendingItems(pendingItems.filter((item) => item.id !== itemId))
+    setItemDialogOpen(false)
+    // Show success notification or feedback
+  }
 
   const mainListItems = [
     { text: "Dashboard", icon: DashboardIcon, path: "/admin" },
@@ -247,15 +319,15 @@ const AdminDashboard = () => {
     { text: "Feedback", icon: FeedbackIcon, path: "/admin/feedback" },
     { text: "Reports", icon: BarChartIcon, path: "/admin/reports" },
     { text: "Settings", icon: SettingsIcon, path: "/admin/settings" },
-  ];
+  ]
 
   const isActive = (path) => {
-    return location.pathname === path;
-  };
+    return location.pathname === path
+  }
 
   const handleNavigation = (path) => {
-    navigate(path);
-  };
+    navigate(path)
+  }
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -306,13 +378,7 @@ const AdminDashboard = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            sx={{ flexGrow: 1 }}
-          >
+          <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
             Admin Dashboard
           </Typography>
           <TextField
@@ -328,7 +394,7 @@ const AdminDashboard = () => {
             }}
           />
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="error">
+            <Badge badgeContent={pendingItems.length} color="error">
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -371,18 +437,12 @@ const AdminDashboard = () => {
           {open && (
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <RecyclingIcon sx={{ mr: 1, color: "primary.main" }} />
-              <Typography
-                variant="h6"
-                color="primary.main"
-                sx={{ fontWeight: 700 }}
-              >
+              <Typography variant="h6" color="primary.main" sx={{ fontWeight: 700 }}>
                 ZeroWaste
               </Typography>
             </Box>
           )}
-          <IconButton onClick={toggleDrawer}>
-            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
+          <IconButton onClick={toggleDrawer}>{open ? <ChevronLeftIcon /> : <ChevronRightIcon />}</IconButton>
         </Toolbar>
         <Divider />
         <List component="nav">
@@ -390,17 +450,13 @@ const AdminDashboard = () => {
             <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 onClick={() => handleNavigation(item.path)}
-                selected={
-                  isActive(item.path) ||
-                  (item.path === "/admin" && location.pathname === "/admin")
-                }
+                selected={isActive(item.path) || (item.path === "/admin" && location.pathname === "/admin")}
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                   bgcolor:
-                    isActive(item.path) ||
-                    (item.path === "/admin" && location.pathname === "/admin")
+                    isActive(item.path) || (item.path === "/admin" && location.pathname === "/admin")
                       ? "rgba(65, 171, 93, 0.1)"
                       : "transparent",
                 }}
@@ -411,8 +467,7 @@ const AdminDashboard = () => {
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
                     color:
-                      isActive(item.path) ||
-                      (item.path === "/admin" && location.pathname === "/admin")
+                      isActive(item.path) || (item.path === "/admin" && location.pathname === "/admin")
                         ? "primary.main"
                         : "inherit",
                   }}
@@ -424,8 +479,7 @@ const AdminDashboard = () => {
                   sx={{
                     opacity: open ? 1 : 0,
                     color:
-                      isActive(item.path) ||
-                      (item.path === "/admin" && location.pathname === "/admin")
+                      isActive(item.path) || (item.path === "/admin" && location.pathname === "/admin")
                         ? "primary.main"
                         : "inherit",
                   }}
@@ -479,11 +533,7 @@ const AdminDashboard = () => {
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <RecyclingIcon sx={{ mr: 1, color: "primary.main" }} />
-            <Typography
-              variant="h6"
-              color="primary.main"
-              sx={{ fontWeight: 700 }}
-            >
+            <Typography variant="h6" color="primary.main" sx={{ fontWeight: 700 }}>
               ZeroWaste
             </Typography>
           </Box>
@@ -497,17 +547,13 @@ const AdminDashboard = () => {
             <ListItem key={item.text} disablePadding>
               <ListItemButton
                 onClick={() => {
-                  handleNavigation(item.path);
-                  handleDrawerToggle();
+                  handleNavigation(item.path)
+                  handleDrawerToggle()
                 }}
-                selected={
-                  isActive(item.path) ||
-                  (item.path === "/admin" && location.pathname === "/admin")
-                }
+                selected={isActive(item.path) || (item.path === "/admin" && location.pathname === "/admin")}
                 sx={{
                   bgcolor:
-                    isActive(item.path) ||
-                    (item.path === "/admin" && location.pathname === "/admin")
+                    isActive(item.path) || (item.path === "/admin" && location.pathname === "/admin")
                       ? "rgba(65, 171, 93, 0.1)"
                       : "transparent",
                 }}
@@ -515,8 +561,7 @@ const AdminDashboard = () => {
                 <ListItemIcon
                   sx={{
                     color:
-                      isActive(item.path) ||
-                      (item.path === "/admin" && location.pathname === "/admin")
+                      isActive(item.path) || (item.path === "/admin" && location.pathname === "/admin")
                         ? "primary.main"
                         : "inherit",
                   }}
@@ -527,8 +572,7 @@ const AdminDashboard = () => {
                   primary={item.text}
                   sx={{
                     color:
-                      isActive(item.path) ||
-                      (item.path === "/admin" && location.pathname === "/admin")
+                      isActive(item.path) || (item.path === "/admin" && location.pathname === "/admin")
                         ? "primary.main"
                         : "inherit",
                   }}
@@ -655,7 +699,7 @@ const AdminDashboard = () => {
                     </Typography>
                   </Box>
                   <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-                    $12,456
+                    12,456 EGP
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     +15% from last month
@@ -672,9 +716,7 @@ const AdminDashboard = () => {
               >
                 <CardContent>
                   <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                    <Avatar
-                      sx={{ bgcolor: "info.light", color: "info.main", mr: 2 }}
-                    >
+                    <Avatar sx={{ bgcolor: "info.light", color: "info.main", mr: 2 }}>
                       <RecyclingIcon />
                     </Avatar>
                     <Typography variant="h6" sx={{ fontWeight: 600 }}>
@@ -691,6 +733,58 @@ const AdminDashboard = () => {
               </Card>
             </Grid>
           </Grid>
+
+          {/* Pending Approvals Section */}
+          {pendingItems.length > 0 && (
+            <Paper sx={{ mb: 4, borderRadius: 2 }}>
+              <Box sx={{ p: 3, bgcolor: "warning.light", borderRadius: "8px 8px 0 0" }}>
+                <Typography variant="h6" sx={{ fontWeight: 600, color: "warning.dark" }}>
+                  Pending Approvals ({pendingItems.length})
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  These items require your review before they can be listed on the marketplace
+                </Typography>
+              </Box>
+              <TableContainer>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>ID</TableCell>
+                      <TableCell>Product Name</TableCell>
+                      <TableCell>Seller</TableCell>
+                      <TableCell>Category</TableCell>
+                      <TableCell>Price</TableCell>
+                      <TableCell>Date Submitted</TableCell>
+                      <TableCell align="right">Actions</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {pendingItems.map((item) => (
+                      <TableRow key={item.id}>
+                        <TableCell>{item.id}</TableCell>
+                        <TableCell>{item.name}</TableCell>
+                        <TableCell>{item.seller}</TableCell>
+                        <TableCell>{item.category}</TableCell>
+                        <TableCell>{item.price}</TableCell>
+                        <TableCell>{item.dateSubmitted}</TableCell>
+                        <TableCell align="right">
+                          <IconButton size="small" color="primary" onClick={() => handleViewItem(item)}>
+                            <VisibilityIcon fontSize="small" />
+                          </IconButton>
+                          <IconButton size="small" color="success" onClick={() => handleApproveItem(item.id)}>
+                            <CheckCircleIcon fontSize="small" />
+                          </IconButton>
+                          <IconButton size="small" color="error" onClick={() => handleRejectItem(item.id)}>
+                            <CancelIcon fontSize="small" />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
+          )}
 
           {/* Tabs for different sections */}
           <Paper sx={{ mb: 4, borderRadius: 2 }}>
@@ -748,8 +842,8 @@ const AdminDashboard = () => {
                                   order.status === "Completed"
                                     ? "success"
                                     : order.status === "Processing"
-                                    ? "warning"
-                                    : "error"
+                                      ? "warning"
+                                      : "error"
                                 }
                                 size="small"
                               />
@@ -776,10 +870,7 @@ const AdminDashboard = () => {
                     {/* User Ranking Board */}
                     <Grid item xs={12} md={4}>
                       <Paper sx={{ p: 2, height: "100%", borderRadius: 2 }}>
-                        <Typography
-                          variant="h6"
-                          sx={{ fontWeight: 600, mb: 2 }}
-                        >
+                        <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
                           Top Users by Points
                         </Typography>
                         <List>
@@ -792,20 +883,20 @@ const AdminDashboard = () => {
                                   index === 0
                                     ? "rgba(255, 215, 0, 0.1)"
                                     : index === 1
-                                    ? "rgba(192, 192, 192, 0.1)"
-                                    : index === 2
-                                    ? "rgba(205, 127, 50, 0.1)"
-                                    : "transparent",
+                                      ? "rgba(192, 192, 192, 0.1)"
+                                      : index === 2
+                                        ? "rgba(205, 127, 50, 0.1)"
+                                        : "transparent",
                                 borderRadius: 1,
                                 border: "1px solid",
                                 borderColor:
                                   index === 0
                                     ? "rgba(255, 215, 0, 0.3)"
                                     : index === 1
-                                    ? "rgba(192, 192, 192, 0.3)"
-                                    : index === 2
-                                    ? "rgba(205, 127, 50, 0.3)"
-                                    : "transparent",
+                                      ? "rgba(192, 192, 192, 0.3)"
+                                      : index === 2
+                                        ? "rgba(205, 127, 50, 0.3)"
+                                        : "transparent",
                               }}
                             >
                               <ListItemIcon>
@@ -817,10 +908,10 @@ const AdminDashboard = () => {
                                       index === 0
                                         ? "gold"
                                         : index === 1
-                                        ? "silver"
-                                        : index === 2
-                                        ? "#cd7f32"
-                                        : "transparent",
+                                          ? "silver"
+                                          : index === 2
+                                            ? "#cd7f32"
+                                            : "transparent",
                                   }}
                                 />
                               </ListItemIcon>
@@ -832,10 +923,7 @@ const AdminDashboard = () => {
                                       alignItems: "center",
                                     }}
                                   >
-                                    <Typography
-                                      variant="body1"
-                                      sx={{ fontWeight: 600 }}
-                                    >
+                                    <Typography variant="body1" sx={{ fontWeight: 600 }}>
                                       {index + 1}. {user.name}
                                     </Typography>
                                   </Box>
@@ -855,11 +943,7 @@ const AdminDashboard = () => {
                                         color: "primary.main",
                                       }}
                                     />
-                                    <Typography
-                                      variant="body2"
-                                      color="primary.main"
-                                      sx={{ fontWeight: 600 }}
-                                    >
+                                    <Typography variant="body2" color="primary.main" sx={{ fontWeight: 600 }}>
                                       {user.points} points
                                     </Typography>
                                   </Box>
@@ -871,13 +955,7 @@ const AdminDashboard = () => {
                                 color={index < 3 ? "primary" : "default"}
                                 sx={{
                                   bgcolor:
-                                    index === 0
-                                      ? "gold"
-                                      : index === 1
-                                      ? "silver"
-                                      : index === 2
-                                      ? "#cd7f32"
-                                      : undefined,
+                                    index === 0 ? "gold" : index === 1 ? "silver" : index === 2 ? "#cd7f32" : undefined,
                                   color: index < 3 ? "white" : undefined,
                                   fontWeight: "bold",
                                 }}
@@ -905,10 +983,7 @@ const AdminDashboard = () => {
                           View All Users
                         </Button>
                       </Box>
-                      <TableContainer
-                        component={Paper}
-                        sx={{ borderRadius: 2 }}
-                      >
+                      <TableContainer component={Paper} sx={{ borderRadius: 2 }}>
                         <Table sx={{ minWidth: 650 }}>
                           <TableHead>
                             <TableRow>
@@ -942,11 +1017,7 @@ const AdminDashboard = () => {
                                         color: "primary.main",
                                       }}
                                     />
-                                    <Typography
-                                      variant="body2"
-                                      color="primary.main"
-                                      sx={{ fontWeight: 600 }}
-                                    >
+                                    <Typography variant="body2" color="primary.main" sx={{ fontWeight: 600 }}>
                                       {user.points}
                                     </Typography>
                                   </Box>
@@ -954,11 +1025,7 @@ const AdminDashboard = () => {
                                 <TableCell>
                                   <Chip
                                     label={user.status}
-                                    color={
-                                      user.status === "Active"
-                                        ? "success"
-                                        : "default"
-                                    }
+                                    color={user.status === "Active" ? "success" : "default"}
                                     size="small"
                                   />
                                 </TableCell>
@@ -1018,11 +1085,7 @@ const AdminDashboard = () => {
                             <TableCell>
                               <Chip
                                 label={listing.status}
-                                color={
-                                  listing.status === "Active"
-                                    ? "success"
-                                    : "default"
-                                }
+                                color={listing.status === "Active" ? "success" : "default"}
                                 size="small"
                               />
                             </TableCell>
@@ -1098,8 +1161,99 @@ const AdminDashboard = () => {
           </Paper>
         </Box>
       </Box>
-    </Box>
-  );
-};
 
-export default AdminDashboard;
+      {/* Item Details Dialog */}
+      <Dialog open={itemDialogOpen} onClose={handleCloseItemDialog} maxWidth="md" fullWidth>
+        {selectedItem && (
+          <>
+            <DialogTitle>
+              <Typography variant="h6" component="div" sx={{ fontWeight: 600 }}>
+                Item Review: {selectedItem.name}
+              </Typography>
+            </DialogTitle>
+            <DialogContent dividers>
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                  <CardMedia
+                    component="img"
+                    image={selectedItem.image}
+                    alt={selectedItem.name}
+                    sx={{
+                      height: 300,
+                      objectFit: "cover",
+                      borderRadius: 1,
+                      mb: 2,
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Typography variant="h6" gutterBottom>
+                    {selectedItem.name}
+                  </Typography>
+                  <Typography variant="body1" color="primary.main" gutterBottom sx={{ fontWeight: 600 }}>
+                    {selectedItem.price}
+                  </Typography>
+                  <Divider sx={{ my: 2 }} />
+                  <Stack spacing={2}>
+                    <Box>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Seller
+                      </Typography>
+                      <Typography variant="body1">{selectedItem.seller}</Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Category
+                      </Typography>
+                      <Typography variant="body1">{selectedItem.category}</Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Condition
+                      </Typography>
+                      <Typography variant="body1">{selectedItem.condition}</Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Date Submitted
+                      </Typography>
+                      <Typography variant="body1">{selectedItem.dateSubmitted}</Typography>
+                    </Box>
+                  </Stack>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    Description
+                  </Typography>
+                  <Typography variant="body1" paragraph>
+                    {selectedItem.description}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={() => handleRejectItem(selectedItem.id)}
+                color="error"
+                variant="outlined"
+                startIcon={<CancelIcon />}
+              >
+                Reject
+              </Button>
+              <Button
+                onClick={() => handleApproveItem(selectedItem.id)}
+                color="success"
+                variant="contained"
+                startIcon={<CheckCircleIcon />}
+              >
+                Approve
+              </Button>
+            </DialogActions>
+          </>
+        )}
+      </Dialog>
+    </Box>
+  )
+}
+
+export default AdminDashboard

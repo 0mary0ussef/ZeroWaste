@@ -39,8 +39,8 @@ import VerifiedUserIcon from "@mui/icons-material/VerifiedUser"
 import StarIcon from "@mui/icons-material/Star"
 import LocalShippingIcon from "@mui/icons-material/LocalShipping"
 
-// Mock user data
-const userData = {
+// Initial user data
+const initialUserData = {
   name: "Omar Youssef",
   email: "omaryoussef@example.com",
   phone: "+20 102 764 3232",
@@ -153,6 +153,7 @@ const purchaseHistory = [
 const ProfilePage = () => {
   const [tabValue, setTabValue] = useState(0)
   const [editMode, setEditMode] = useState(false)
+  const [userData, setUserData] = useState(initialUserData)
   const [userForm, setUserForm] = useState({ ...userData })
   const [successMessage, setSuccessMessage] = useState("")
 
@@ -169,10 +170,8 @@ const ProfilePage = () => {
   }
 
   const handleSaveProfile = () => {
-    // In a real app, you would save the data to your backend
-    console.log("Saving profile data:", userForm)
-    // For demo, we'll just update our local userData
-    // userData = { ...userForm }
+    // Update the userData state with the form values
+    setUserData({ ...userForm })
     setEditMode(false)
     setSuccessMessage("Profile updated successfully!")
 
@@ -384,7 +383,7 @@ const ProfilePage = () => {
               </Grid>
             </Paper>
 
-            <Paper sx={{ p: 3, borderRadius: 2, mb: 3,mt:3 }}>
+            <Paper sx={{ p: 3, borderRadius: 2, mb: 3, mt: 3 }}>
               <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                 Recycling Points
               </Typography>
@@ -572,7 +571,7 @@ const ProfilePage = () => {
                             secondary={
                               <Box>
                                 <Typography variant="body2" color="primary.main" sx={{ fontWeight: 600 }}>
-                                  ${item.price}
+                                  {item.price} EGP
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
                                   {item.views} views
@@ -631,7 +630,7 @@ const ProfilePage = () => {
                             secondary={
                               <Box>
                                 <Typography variant="body2" color="primary.main" sx={{ fontWeight: 600 }}>
-                                  ${item.price}
+                                  {item.price} EGP
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
                                   Purchased on {item.date} from {item.seller}
@@ -677,7 +676,7 @@ const ProfilePage = () => {
                               </Typography>
                               <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
                                 <Typography variant="body1" color="primary.main" sx={{ fontWeight: 600, mr: 1 }}>
-                                  $99
+                                  99 EGP
                                 </Typography>
                                 <Box sx={{ display: "flex", alignItems: "center", ml: "auto" }}>
                                   <StarIcon sx={{ fontSize: 16, color: "warning.main" }} />
@@ -765,4 +764,3 @@ const ProfilePage = () => {
 }
 
 export default ProfilePage
-

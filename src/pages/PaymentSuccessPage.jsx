@@ -145,7 +145,7 @@ const PaymentSuccessPage = () => {
             </Grid>
             <Grid item xs={12} sm={4} sx={{ textAlign: { xs: "left", sm: "right" } }}>
               <Typography variant="h6" color="primary.main">
-                ${item.price}
+                {item.price} EGP
               </Typography>
             </Grid>
           </Grid>
@@ -156,19 +156,19 @@ const PaymentSuccessPage = () => {
                 <Typography variant="body1">Subtotal</Typography>
               </Grid>
               <Grid item xs={6} sx={{ textAlign: "right" }}>
-                <Typography variant="body1">${item.price}</Typography>
+                <Typography variant="body1">{item.price} EGP</Typography>
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1">Shipping</Typography>
               </Grid>
               <Grid item xs={6} sx={{ textAlign: "right" }}>
-                <Typography variant="body1">$5.00</Typography>
+                <Typography variant="body1">5.00 EGP</Typography>
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1">Tax</Typography>
               </Grid>
               <Grid item xs={6} sx={{ textAlign: "right" }}>
-                <Typography variant="body1">${(item.price * 0.08).toFixed(2)}</Typography>
+                <Typography variant="body1">{(item.price * 0.08).toFixed(2)} EGP</Typography>
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="h6" sx={{ fontWeight: 600 }}>
@@ -177,7 +177,7 @@ const PaymentSuccessPage = () => {
               </Grid>
               <Grid item xs={6} sx={{ textAlign: "right" }}>
                 <Typography variant="h6" sx={{ fontWeight: 600, color: "primary.main" }}>
-                  ${(item.price + 5 + item.price * 0.08).toFixed(2)}
+                  {(item.price + 5 + item.price * 0.08).toFixed(2)} EGP
                 </Typography>
               </Grid>
             </Grid>
@@ -212,4 +212,3 @@ const PaymentSuccessPage = () => {
 }
 
 export default PaymentSuccessPage
-

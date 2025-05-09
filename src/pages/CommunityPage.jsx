@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import {
   Box,
   Container,
@@ -20,6 +20,8 @@ import {
   ListItemAvatar,
   ListItemText,
   Chip,
+  Collapse,
+  InputAdornment,
 } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import FavoriteIcon from "@mui/icons-material/Favorite"
@@ -28,9 +30,12 @@ import CommentIcon from "@mui/icons-material/Comment"
 import ShareIcon from "@mui/icons-material/Share"
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import SendIcon from "@mui/icons-material/Send"
+import ImageIcon from "@mui/icons-material/Image"
+import LocalOfferIcon from "@mui/icons-material/LocalOffer"
+import CloseIcon from "@mui/icons-material/Close"
 
 // Mock data
-const posts = [
+const initialPosts = [
   {
     id: 1,
     author: {
@@ -43,7 +48,26 @@ const posts = [
       "Just finished organizing our neighborhood cleanup event! We collected over 50 bags of trash and recyclables. So proud of our community for coming together for this cause. #ZeroWaste #CommunityCleanup",
     image: "/images/cleanup.jpg",
     likes: 42,
-    comments: 8,
+    comments: [
+      {
+        id: 1,
+        author: {
+          name: "Michael Rodriguez",
+          avatar: "https://source.unsplash.com/100x100/?portrait,boy",
+        },
+        content: "Amazing work! When is the next cleanup event?",
+        date: "1 hour ago",
+      },
+      {
+        id: 2,
+        author: {
+          name: "Sarah Williams",
+          avatar: "https://source.unsplash.com/100x100/?portrait,girl",
+        },
+        content: "I'd love to join next time!",
+        date: "30 minutes ago",
+      },
+    ],
     shares: 12,
     tags: ["Community Cleanup", "Zero Waste"],
   },
@@ -58,7 +82,17 @@ const posts = [
     content:
       "Here's a quick tip for reducing plastic waste: bring your own reusable containers when shopping at bulk stores or delis. Most places are happy to accommodate, and you'll save so much unnecessary packaging!",
     likes: 28,
-    comments: 5,
+    comments: [
+      {
+        id: 1,
+        author: {
+          name: "Olivia Thompson",
+          avatar: "https://source.unsplash.com/100x100/?portrait,woman2",
+        },
+        content: "I've been doing this for months and it's so easy once you get into the habit!",
+        date: "12 hours ago",
+      },
+    ],
     shares: 7,
     tags: ["Plastic Free", "Recycling Tips"],
   },
@@ -74,7 +108,26 @@ const posts = [
       "I just completed my first month of composting and I'm amazed at how much it has reduced my household waste! If anyone needs tips on getting started with composting in small spaces, feel free to ask!",
     image: "/images/compost2.jpg",
     likes: 35,
-    comments: 14,
+    comments: [
+      {
+        id: 1,
+        author: {
+          name: "David Chen",
+          avatar: "https://source.unsplash.com/100x100/?portrait,man",
+        },
+        content: "What composting system are you using for your small space?",
+        date: "2 days ago",
+      },
+      {
+        id: 2,
+        author: {
+          name: "Emma Johnson",
+          avatar: "https://source.unsplash.com/100x100/?portrait,woman",
+        },
+        content: "This is so inspiring! I need to start composting too.",
+        date: "1 day ago",
+      },
+    ],
     shares: 5,
     tags: ["Composting", "Reduce Waste"],
   },
@@ -117,15 +170,77 @@ const activeUsers = [
 ]
 
 const CommunityPage = () => {
+  const [posts, setPosts] = useState(initialPosts)
   const [postContent, setPostContent] = useState("")
+  const [postImage, setPostImage] = useState(null)
+  const [postImagePreview, setPostImagePreview] = useState("")
+  const [currentTag, setCurrentTag] = useState("")
+  const [postTags, setPostTags] = useState([])
   const [likedPosts, setLikedPosts] = useState({})
   const [searchQuery, setSearchQuery] = useState("")
+  const [expandedComments, setExpandedComments] = useState({})
+  const [commentInputs, setCommentInputs] = useState({})
+  const fileInputRef = useRef(null)
 
   const handlePostSubmit = (e) => {
     e.preventDefault()
-    // In a real app, you would submit the post to your backend
-    console.log("New post:", postContent)
+    if (!postContent.trim()) return
+
+    // Create a new post
+    const newPost = {
+      id: Date.now(), // Use timestamp as a simple ID
+      author: {
+        name: "You", // In a real app, this would be the current user
+        avatar: "https://source.unsplash.com/100x100/?portrait,user",
+        role: "Member",
+      },
+      date: "Just now",
+      content: postContent,
+      image: postImagePreview || null,
+      likes: 0,
+      comments: [],
+      shares: 0,
+      tags: postTags,
+    }
+
+    // Add the new post to the beginning of the posts array
+    setPosts([newPost, ...posts])
+
+    // Reset form
     setPostContent("")
+    setPostImage(null)
+    setPostImagePreview("")
+    setPostTags([])
+  }
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      setPostImage(file)
+
+      // Create a preview URL for the image
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setPostImagePreview(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleRemoveImage = () => {
+    setPostImage(null)
+    setPostImagePreview("")
+  }
+
+  const handleAddTag = () => {
+    if (currentTag.trim() && !postTags.includes(currentTag.trim())) {
+      setPostTags([...postTags, currentTag.trim()])
+      setCurrentTag("")
+    }
+  }
+
+  const handleRemoveTag = (tagToRemove) => {
+    setPostTags(postTags.filter((tag) => tag !== tagToRemove))
   }
 
   const handleLikeToggle = (postId) => {
@@ -133,6 +248,54 @@ const CommunityPage = () => {
       ...prev,
       [postId]: !prev[postId],
     }))
+  }
+
+  const handleCommentToggle = (postId) => {
+    setExpandedComments((prev) => ({
+      ...prev,
+      [postId]: !prev[postId],
+    }))
+  }
+
+  const handleCommentInputChange = (postId, value) => {
+    setCommentInputs({
+      ...commentInputs,
+      [postId]: value,
+    })
+  }
+
+  const handleAddComment = (postId) => {
+    const commentContent = commentInputs[postId]
+    if (!commentContent || !commentContent.trim()) return
+
+    const newComment = {
+      id: Date.now(),
+      author: {
+        name: "You", // In a real app, this would be the current user
+        avatar: "https://source.unsplash.com/100x100/?portrait,user",
+      },
+      content: commentContent,
+      date: "Just now",
+    }
+
+    // Add the comment to the post
+    setPosts(
+      posts.map((post) => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: [...post.comments, newComment],
+          }
+        }
+        return post
+      }),
+    )
+
+    // Clear the comment input
+    setCommentInputs({
+      ...commentInputs,
+      [postId]: "",
+    })
   }
 
   const filteredPosts = posts.filter(
@@ -251,14 +414,95 @@ const CommunityPage = () => {
                     onChange={(e) => setPostContent(e.target.value)}
                   />
                 </Box>
+
+                {/* Image Preview */}
+                {postImagePreview && (
+                  <Box sx={{ position: "relative", mb: 2 }}>
+                    <Box
+                      component="img"
+                      src={postImagePreview}
+                      alt="Post image preview"
+                      sx={{
+                        width: "100%",
+                        maxHeight: "300px",
+                        objectFit: "contain",
+                        borderRadius: 1,
+                      }}
+                    />
+                    <IconButton
+                      size="small"
+                      sx={{
+                        position: "absolute",
+                        top: 8,
+                        right: 8,
+                        bgcolor: "rgba(0, 0, 0, 0.5)",
+                        color: "white",
+                        "&:hover": {
+                          bgcolor: "rgba(0, 0, 0, 0.7)",
+                        },
+                      }}
+                      onClick={handleRemoveImage}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                  </Box>
+                )}
+
+                {/* Tags */}
+                {postTags.length > 0 && (
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2 }}>
+                    {postTags.map((tag, index) => (
+                      <Chip
+                        key={index}
+                        label={tag}
+                        size="small"
+                        color="primary"
+                        variant="outlined"
+                        onDelete={() => handleRemoveTag(tag)}
+                      />
+                    ))}
+                  </Box>
+                )}
+
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <Box>
-                    <Button size="small" startIcon={<SearchIcon />}>
+                  <Box sx={{ display: "flex", gap: 1 }}>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      ref={fileInputRef}
+                      onChange={handleImageUpload}
+                    />
+                    <Button size="small" startIcon={<ImageIcon />} onClick={() => fileInputRef.current.click()}>
                       Photo
                     </Button>
-                    <Button size="small" startIcon={<SearchIcon />}>
-                      Tag
-                    </Button>
+                    <TextField
+                      size="small"
+                      placeholder="Add tag..."
+                      value={currentTag}
+                      onChange={(e) => setCurrentTag(e.target.value)}
+                      onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault()
+                          handleAddTag()
+                        }
+                      }}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <LocalOfferIcon fontSize="small" />
+                          </InputAdornment>
+                        ),
+                        endAdornment: currentTag && (
+                          <InputAdornment position="end">
+                            <Button size="small" onClick={handleAddTag}>
+                              Add
+                            </Button>
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{ ml: 1 }}
+                    />
                   </Box>
                   <Button
                     variant="contained"
@@ -338,11 +582,11 @@ const CommunityPage = () => {
                         </Typography>
                       </Box>
                       <Box>
-                        <IconButton>
+                        <IconButton onClick={() => handleCommentToggle(post.id)}>
                           <CommentIcon />
                         </IconButton>
                         <Typography variant="body2" component="span" color="text.secondary">
-                          {post.comments}
+                          {post.comments.length}
                         </Typography>
                       </Box>
                       <Box>
@@ -354,6 +598,91 @@ const CommunityPage = () => {
                         </Typography>
                       </Box>
                     </Box>
+
+                    {/* Comments Section */}
+                    <Collapse in={expandedComments[post.id]} timeout="auto" unmountOnExit>
+                      <Box sx={{ mt: 2 }}>
+                        <Divider sx={{ mb: 2 }} />
+                        <Typography variant="subtitle2" gutterBottom>
+                          Comments
+                        </Typography>
+
+                        {/* Comment List */}
+                        {post.comments.length > 0 ? (
+                          <List disablePadding>
+                            {post.comments.map((comment) => (
+                              <ListItem key={comment.id} alignItems="flex-start" sx={{ px: 0, py: 1 }}>
+                                <ListItemAvatar sx={{ minWidth: 40 }}>
+                                  <Avatar
+                                    src={comment.author.avatar}
+                                    alt={comment.author.name}
+                                    sx={{ width: 32, height: 32 }}
+                                  />
+                                </ListItemAvatar>
+                                <ListItemText
+                                  primary={
+                                    <Box
+                                      sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                                    >
+                                      <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                                        {comment.author.name}
+                                      </Typography>
+                                      <Typography variant="caption" color="text.secondary">
+                                        {comment.date}
+                                      </Typography>
+                                    </Box>
+                                  }
+                                  secondary={
+                                    <Typography variant="body2" color="text.primary" sx={{ mt: 0.5 }}>
+                                      {comment.content}
+                                    </Typography>
+                                  }
+                                />
+                              </ListItem>
+                            ))}
+                          </List>
+                        ) : (
+                          <Typography variant="body2" color="text.secondary" sx={{ my: 2 }}>
+                            No comments yet. Be the first to comment!
+                          </Typography>
+                        )}
+
+                        {/* Add Comment */}
+                        <Box sx={{ display: "flex", mt: 2 }}>
+                          <Avatar
+                            sx={{ width: 32, height: 32, mr: 1 }}
+                            src="https://source.unsplash.com/100x100/?portrait,user"
+                          />
+                          <TextField
+                            fullWidth
+                            size="small"
+                            placeholder="Write a comment..."
+                            value={commentInputs[post.id] || ""}
+                            onChange={(e) => handleCommentInputChange(post.id, e.target.value)}
+                            onKeyPress={(e) => {
+                              if (e.key === "Enter" && !e.shiftKey) {
+                                e.preventDefault()
+                                handleAddComment(post.id)
+                              }
+                            }}
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    edge="end"
+                                    size="small"
+                                    disabled={!commentInputs[post.id] || !commentInputs[post.id].trim()}
+                                    onClick={() => handleAddComment(post.id)}
+                                  >
+                                    <SendIcon fontSize="small" />
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Collapse>
                   </CardContent>
                 </Card>
               ))
@@ -421,4 +750,3 @@ const CommunityPage = () => {
 }
 
 export default CommunityPage
-
