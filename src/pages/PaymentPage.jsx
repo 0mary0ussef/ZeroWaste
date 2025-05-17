@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useNavigate, useLocation } from "react-router-dom"
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Box,
   Container,
@@ -24,14 +24,14 @@ import {
   Select,
   MenuItem,
   InputLabel,
-} from "@mui/material"
-import CreditCardIcon from "@mui/icons-material/CreditCard"
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance"
-import PaymentsIcon from "@mui/icons-material/Payments"
-import SecurityIcon from "@mui/icons-material/Security"
-import ArrowBackIcon from "@mui/icons-material/ArrowBack"
+} from "@mui/material";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import SecurityIcon from "@mui/icons-material/Security";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const steps = ["Shipping Information", "Payment Method", "Review & Pay"]
+const steps = ["Shipping Information", "Payment Method", "Review & Pay"];
 
 // List of countries for the dropdown
 const countries = [
@@ -230,14 +230,14 @@ const countries = [
   "Yemen",
   "Zambia",
   "Zimbabwe",
-]
+];
 
 const PaymentPage = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const item = location.state?.item || null
+  const navigate = useNavigate();
+  const location = useLocation();
+  const item = location.state?.item || null;
 
-  const [activeStep, setActiveStep] = useState(0)
+  const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -252,96 +252,105 @@ const PaymentPage = () => {
     cardName: "",
     expiryDate: "",
     cvv: "",
-  })
-  const [errors, setErrors] = useState({})
-  const [snackbarOpen, setSnackbarOpen] = useState(false)
-  const [snackbarMessage, setSnackbarMessage] = useState("")
-  const [snackbarSeverity, setSnackbarSeverity] = useState("success")
+  });
+  const [errors, setErrors] = useState({});
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
-    })
+    });
     // Clear error when field is edited
     if (errors[name]) {
       setErrors({
         ...errors,
         [name]: null,
-      })
+      });
     }
-  }
+  };
 
   const validateStep = () => {
-    const newErrors = {}
+    const newErrors = {};
 
     if (activeStep === 0) {
-      if (!formData.firstName.trim()) newErrors.firstName = "First name is required"
-      if (!formData.lastName.trim()) newErrors.lastName = "Last name is required"
-      if (!formData.email.trim()) newErrors.email = "Email is required"
-      else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid"
-      if (!formData.address.trim()) newErrors.address = "Address is required"
-      if (!formData.city.trim()) newErrors.city = "City is required"
-      if (!formData.state.trim()) newErrors.state = "State is required"
-      if (!formData.zipCode.trim()) newErrors.zipCode = "ZIP code is required"
+      if (!formData.firstName.trim())
+        newErrors.firstName = "First name is required";
+      if (!formData.lastName.trim())
+        newErrors.lastName = "Last name is required";
+      if (!formData.email.trim()) newErrors.email = "Email is required";
+      else if (!/\S+@\S+\.\S+/.test(formData.email))
+        newErrors.email = "Email is invalid";
+      if (!formData.address.trim()) newErrors.address = "Address is required";
+      if (!formData.city.trim()) newErrors.city = "City is required";
+      if (!formData.state.trim()) newErrors.state = "State is required";
+      if (!formData.zipCode.trim()) newErrors.zipCode = "ZIP code is required";
     } else if (activeStep === 1) {
       if (formData.paymentMethod === "credit") {
-        if (!formData.cardNumber.trim()) newErrors.cardNumber = "Card number is required"
+        if (!formData.cardNumber.trim())
+          newErrors.cardNumber = "Card number is required";
         else if (!/^\d{16}$/.test(formData.cardNumber.replace(/\s/g, "")))
-          newErrors.cardNumber = "Card number must be 16 digits"
-        if (!formData.cardName.trim()) newErrors.cardName = "Name on card is required"
-        if (!formData.expiryDate.trim()) newErrors.expiryDate = "Expiry date is required"
+          newErrors.cardNumber = "Card number must be 16 digits";
+        if (!formData.cardName.trim())
+          newErrors.cardName = "Name on card is required";
+        if (!formData.expiryDate.trim())
+          newErrors.expiryDate = "Expiry date is required";
         else if (!/^\d{2}\/\d{2}$/.test(formData.expiryDate))
-          newErrors.expiryDate = "Expiry date must be in MM/YY format"
-        if (!formData.cvv.trim()) newErrors.cvv = "CVV is required"
-        else if (!/^\d{3,4}$/.test(formData.cvv)) newErrors.cvv = "CVV must be 3 or 4 digits"
+          newErrors.expiryDate = "Expiry date must be in MM/YY format";
+        if (!formData.cvv.trim()) newErrors.cvv = "CVV is required";
+        else if (!/^\d{3,4}$/.test(formData.cvv))
+          newErrors.cvv = "CVV must be 3 or 4 digits";
       }
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleNext = () => {
     if (validateStep()) {
       if (activeStep === steps.length - 1) {
         // Submit the form
-        handleSubmit()
+        handleSubmit();
       } else {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1)
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
       }
     }
-  }
+  };
 
   const handleBack = () => {
     if (activeStep === 0) {
       // If on first step, navigate back to marketplace
-      navigate("/marketplace")
+      navigate("/marketplace");
     } else {
       // Otherwise, go back to previous step
-      setActiveStep((prevActiveStep) => prevActiveStep - 1)
+      setActiveStep((prevActiveStep) => prevActiveStep - 1);
     }
-  }
+  };
 
   const handleSubmit = () => {
     // In a real app, you would process the payment here
-    console.log("Payment processed:", formData)
+    console.log("Payment processed:", formData);
 
     // Show success message
-    setSnackbarMessage("Payment successful! Redirecting to confirmation page...")
-    setSnackbarSeverity("success")
-    setSnackbarOpen(true)
+    setSnackbarMessage(
+      "Payment successful! Redirecting to confirmation page..."
+    );
+    setSnackbarSeverity("success");
+    setSnackbarOpen(true);
 
     // Redirect to success page after a delay
     setTimeout(() => {
-      navigate("/payment-success", { state: { item, formData } })
-    }, 2000)
-  }
+      navigate("/payment-success", { state: { item, formData } });
+    }, 2000);
+  };
 
   const handleCloseSnackbar = () => {
-    setSnackbarOpen(false)
-  }
+    setSnackbarOpen(false);
+  };
 
   const renderStepContent = (step) => {
     switch (step) {
@@ -453,19 +462,27 @@ const PaymentPage = () => {
               </FormControl>
             </Grid>
           </Grid>
-        )
+        );
       case 1:
         return (
           <Box>
             <FormControl component="fieldset" sx={{ mb: 3 }}>
               <FormLabel component="legend">Payment Method</FormLabel>
-              <RadioGroup name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} sx={{ mt: 1 }}>
+              <RadioGroup
+                name="paymentMethod"
+                value={formData.paymentMethod}
+                onChange={handleChange}
+                sx={{ mt: 1 }}
+              >
                 <Paper
                   sx={{
                     p: 2,
                     mb: 2,
                     border: "1px solid",
-                    borderColor: formData.paymentMethod === "credit" ? "primary.main" : "divider",
+                    borderColor:
+                      formData.paymentMethod === "credit"
+                        ? "primary.main"
+                        : "divider",
                     borderRadius: 1,
                   }}
                 >
@@ -485,7 +502,10 @@ const PaymentPage = () => {
                     p: 2,
                     mb: 2,
                     border: "1px solid",
-                    borderColor: formData.paymentMethod === "bank" ? "primary.main" : "divider",
+                    borderColor:
+                      formData.paymentMethod === "bank"
+                        ? "primary.main"
+                        : "divider",
                     borderRadius: 1,
                   }}
                 >
@@ -504,7 +524,10 @@ const PaymentPage = () => {
                   sx={{
                     p: 2,
                     border: "1px solid",
-                    borderColor: formData.paymentMethod === "paypal" ? "primary.main" : "divider",
+                    borderColor:
+                      formData.paymentMethod === "paypal"
+                        ? "primary.main"
+                        : "divider",
                     borderRadius: 1,
                   }}
                 >
@@ -537,7 +560,9 @@ const PaymentPage = () => {
                       error={!!errors.cardNumber}
                       helperText={errors.cardNumber}
                       InputProps={{
-                        endAdornment: <SecurityIcon color="action" sx={{ ml: 1 }} />,
+                        endAdornment: (
+                          <SecurityIcon color="action" sx={{ ml: 1 }} />
+                        ),
                       }}
                     />
                   </Grid>
@@ -583,7 +608,7 @@ const PaymentPage = () => {
               </Box>
             )}
           </Box>
-        )
+        );
       case 2:
         return (
           <Box>
@@ -612,7 +637,11 @@ const PaymentPage = () => {
                     <Typography variant="body2" color="text.secondary">
                       {item.description}
                     </Typography>
-                    <Typography variant="h6" color="primary.main" sx={{ mt: 1 }}>
+                    <Typography
+                      variant="h6"
+                      color="primary.main"
+                      sx={{ mt: 1 }}
+                    >
                       {item.price} EGP
                     </Typography>
                   </Grid>
@@ -620,7 +649,8 @@ const PaymentPage = () => {
               </Box>
             ) : (
               <Alert severity="warning" sx={{ mb: 3 }}>
-                No item information available. Please go back to the marketplace.
+                No item information available. Please go back to the
+                marketplace.
               </Alert>
             )}
 
@@ -649,7 +679,8 @@ const PaymentPage = () => {
                   Shipping Address
                 </Typography>
                 <Typography variant="body1">
-                  {formData.address}, {formData.city}, {formData.state} {formData.zipCode}, {formData.country}
+                  {formData.address}, {formData.city}, {formData.state}{" "}
+                  {formData.zipCode}, {formData.country}
                 </Typography>
               </Grid>
             </Grid>
@@ -668,8 +699,8 @@ const PaymentPage = () => {
                   {formData.paymentMethod === "credit"
                     ? "Credit / Debit Card"
                     : formData.paymentMethod === "bank"
-                      ? "Bank Transfer"
-                      : "PayPal"}
+                    ? "Bank Transfer"
+                    : "PayPal"}
                 </Typography>
               </Grid>
               {formData.paymentMethod === "credit" && (
@@ -677,7 +708,9 @@ const PaymentPage = () => {
                   <Typography variant="body2" color="text.secondary">
                     Card Number
                   </Typography>
-                  <Typography variant="body1">**** **** **** {formData.cardNumber.slice(-4)}</Typography>
+                  <Typography variant="body1">
+                    **** **** **** {formData.cardNumber.slice(-4)}
+                  </Typography>
                 </Grid>
               )}
             </Grid>
@@ -690,7 +723,9 @@ const PaymentPage = () => {
                   <Typography variant="body1">Subtotal</Typography>
                 </Grid>
                 <Grid item xs={6} sx={{ textAlign: "right" }}>
-                  <Typography variant="body1">{item ? item.price : 0} EGP</Typography>
+                  <Typography variant="body1">
+                    {item ? item.price : 0} EGP
+                  </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography variant="body1">Shipping</Typography>
@@ -702,7 +737,9 @@ const PaymentPage = () => {
                   <Typography variant="body1">Tax</Typography>
                 </Grid>
                 <Grid item xs={6} sx={{ textAlign: "right" }}>
-                  <Typography variant="body1">{item ? (item.price * 0.08).toFixed(2) : 0} EGP</Typography>
+                  <Typography variant="body1">
+                    {item ? (item.price * 0.08).toFixed(2) : 0} EGP
+                  </Typography>
                 </Grid>
                 <Grid item xs={6}>
                   <Typography variant="h6" sx={{ fontWeight: 600 }}>
@@ -710,27 +747,42 @@ const PaymentPage = () => {
                   </Typography>
                 </Grid>
                 <Grid item xs={6} sx={{ textAlign: "right" }}>
-                  <Typography variant="h6" sx={{ fontWeight: 600, color: "primary.main" }}>
-                    {item ? (item.price + 5 + item.price * 0.08).toFixed(2) : 0} EGP
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: 600, color: "primary.main" }}
+                  >
+                    {item ? (item.price + 5 + item.price * 0.08).toFixed(2) : 0}{" "}
+                    EGP
                   </Typography>
                 </Grid>
               </Grid>
             </Box>
           </Box>
-        )
+        );
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
-      <Button onClick={handleBack} startIcon={<ArrowBackIcon />} sx={{ mb: 3 }} color="primary" variant="text">
+      <Button
+        onClick={handleBack}
+        startIcon={<ArrowBackIcon />}
+        sx={{ mb: 3 }}
+        color="primary"
+        variant="text"
+      >
         {activeStep === 0 ? "Back to Marketplace" : "Back"}
       </Button>
 
       <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
-        <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
+        <Typography
+          variant="h4"
+          component="h1"
+          gutterBottom
+          sx={{ fontWeight: 700 }}
+        >
           Checkout
         </Typography>
 
@@ -760,12 +812,16 @@ const PaymentPage = () => {
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: "100%" }}>
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
+          sx={{ width: "100%" }}
+        >
           {snackbarMessage}
         </Alert>
       </Snackbar>
     </Container>
-  )
-}
+  );
+};
 
-export default PaymentPage
+export default PaymentPage;

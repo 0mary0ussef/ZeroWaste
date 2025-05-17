@@ -1,16 +1,16 @@
-import { Box, Container, Grid, Typography, Button } from "@mui/material"
-import { Link as RouterLink } from "react-router-dom"
-import PersonIcon from "@mui/icons-material/Person"
-import RecyclingIcon from "@mui/icons-material/Recycling"
-import AutorenewIcon from "@mui/icons-material/Autorenew"
-import PlasticIcon from "@mui/icons-material/RestoreFromTrash"
-import PaperIcon from "@mui/icons-material/Description"
-import ElectronicsIcon from "@mui/icons-material/SettingsRemote"
-import ToysIcon from "@mui/icons-material/SportsEsports"
+import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import PersonIcon from "@mui/icons-material/Person";
+import RecyclingIcon from "@mui/icons-material/Recycling";
+import AutorenewIcon from "@mui/icons-material/Autorenew";
+import PlasticIcon from "@mui/icons-material/RestoreFromTrash";
+import PaperIcon from "@mui/icons-material/Description";
+import ElectronicsIcon from "@mui/icons-material/SettingsRemote";
+import ToysIcon from "@mui/icons-material/SportsEsports";
 
 // Import the components
-import SectionTitle from "../components/SectionTitle"
-import CategoryCard from "../components/CategoryCard"
+import SectionTitle from "../components/SectionTitle";
+import CategoryCard from "../components/CategoryCard";
 
 const Home = () => {
   return (
@@ -18,13 +18,26 @@ const Home = () => {
       {/* Hero Section */}
       <Box sx={{ py: 10, bgcolor: "white" }}>
         <Container>
-          <Typography variant="h2" align="center" gutterBottom sx={{ fontWeight: 700 }}>
+          <Typography
+            variant="h2"
+            align="center"
+            gutterBottom
+            sx={{ fontWeight: 700 }}
+          >
             Welcome to Zero Waste
           </Typography>
-          <Typography variant="h5" align="center" color="text.secondary" sx={{ mb: 4 }}>
-            Join us in our mission to reduce waste and create a sustainable future.
+          <Typography
+            variant="h5"
+            align="center"
+            color="text.secondary"
+            sx={{ mb: 4 }}
+          >
+            Join us in our mission to reduce waste and create a sustainable
+            future.
           </Typography>
-          <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 4 }}>
+          <Box
+            sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 4 }}
+          >
             <Button
               component={RouterLink}
               to="/signup"
@@ -72,7 +85,11 @@ const Home = () => {
                 />
               </Grid>
               <Grid item xs={6} sm={3}>
-                <CategoryCard icon={PaperIcon} title="Papers" description="Newspapers, magazines, and cardboard" />
+                <CategoryCard
+                  icon={PaperIcon}
+                  title="Papers"
+                  description="Newspapers, magazines, and cardboard"
+                />
               </Grid>
               <Grid item xs={6} sm={3}>
                 <CategoryCard
@@ -82,7 +99,11 @@ const Home = () => {
                 />
               </Grid>
               <Grid item xs={6} sm={3}>
-                <CategoryCard icon={ToysIcon} title="Kids Toys" description="Donate and recycle children's toys" />
+                <CategoryCard
+                  icon={ToysIcon}
+                  title="Kids Toys"
+                  description="Donate and recycle children's toys"
+                />
               </Grid>
             </Grid>
           </Box>
@@ -126,7 +147,8 @@ const Home = () => {
                   Create Your Account
                 </Typography>
                 <Typography color="text.secondary">
-                  Sign up and join our community of eco-conscious individuals committed to making a difference.
+                  Sign up and join our community of eco-conscious individuals
+                  committed to making a difference.
                 </Typography>
               </Box>
             </Grid>
@@ -162,7 +184,8 @@ const Home = () => {
                   Recycle and Collect Points
                 </Typography>
                 <Typography color="text.secondary">
-                  Earn points for every item you recycle through our platform and track your environmental impact.
+                  Earn points for every item you recycle through our platform
+                  and track your environmental impact.
                 </Typography>
               </Box>
             </Grid>
@@ -198,7 +221,8 @@ const Home = () => {
                   Replace The Points
                 </Typography>
                 <Typography color="text.secondary">
-                  Use your points to get discounts and eco-friendly products from our marketplace partners.
+                  Use your points to get discounts and eco-friendly products
+                  from our marketplace partners.
                 </Typography>
               </Box>
             </Grid>
@@ -206,8 +230,7 @@ const Home = () => {
         </Container>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Home
-
+export default Home;
