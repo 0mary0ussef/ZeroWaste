@@ -39,8 +39,8 @@ const initialPosts = [
   {
     id: 1,
     author: {
-      name: "Emma Johnson",
-      avatar: "https://source.unsplash.com/100x100/?portrait,woman",
+      name: "Omar Youssef",
+      avatar: "/images/Omar.jpg",
       role: "Community Leader",
     },
     date: "2 hours ago",
@@ -52,8 +52,8 @@ const initialPosts = [
       {
         id: 1,
         author: {
-          name: "Michael Rodriguez",
-          avatar: "https://source.unsplash.com/100x100/?portrait,boy",
+          name: "Fatma Ibrahim",
+          avatar: "/images/Fatma.jpg",
         },
         content: "Amazing work! When is the next cleanup event?",
         date: "1 hour ago",
@@ -61,8 +61,8 @@ const initialPosts = [
       {
         id: 2,
         author: {
-          name: "Sarah Williams",
-          avatar: "https://source.unsplash.com/100x100/?portrait,girl",
+          name: "Toqa Ahmed",
+          avatar: "/images/Toqa.jpg",
         },
         content: "I'd love to join next time!",
         date: "30 minutes ago",
@@ -74,8 +74,8 @@ const initialPosts = [
   {
     id: 2,
     author: {
-      name: "David Chen",
-      avatar: "https://source.unsplash.com/100x100/?portrait,man",
+      name: "Arwa Mohammed",
+      avatar: "/images/Arwa.jpg",
       role: "Recycling Expert",
     },
     date: "Yesterday",
@@ -86,8 +86,8 @@ const initialPosts = [
       {
         id: 1,
         author: {
-          name: "Olivia Thompson",
-          avatar: "https://source.unsplash.com/100x100/?portrait,woman2",
+          name: "Mohab Ehab",
+          avatar: "/images/Mohab.jpg",
         },
         content: "I've been doing this for months and it's so easy once you get into the habit!",
         date: "12 hours ago",
@@ -99,8 +99,8 @@ const initialPosts = [
   {
     id: 3,
     author: {
-      name: "Sarah Williams",
-      avatar: "https://source.unsplash.com/100x100/?portrait,girl",
+      name: "Toqa Ahmed",
+      avatar: "/images/Toqa.jpg",
       role: "Sustainability Advocate",
     },
     date: "3 days ago",
@@ -112,8 +112,8 @@ const initialPosts = [
       {
         id: 1,
         author: {
-          name: "David Chen",
-          avatar: "https://source.unsplash.com/100x100/?portrait,man",
+          name: "Arwa Mohammed",
+          avatar: "/images/Arwa.jpg",
         },
         content: "What composting system are you using for your small space?",
         date: "2 days ago",
@@ -121,8 +121,8 @@ const initialPosts = [
       {
         id: 2,
         author: {
-          name: "Emma Johnson",
-          avatar: "https://source.unsplash.com/100x100/?portrait,woman",
+          name: "Omar Youssef",
+          avatar: "/images/Omar.jpg",
         },
         content: "This is so inspiring! I need to start composting too.",
         date: "1 day ago",
@@ -143,28 +143,28 @@ const trendingTopics = [
 
 const activeUsers = [
   {
-    name: "Emma Johnson",
-    avatar: "https://source.unsplash.com/100x100/?portrait,woman",
+    name: "Omar Youssef",
+    avatar: "/images/Omar.jpg",
     status: "Online",
   },
   {
-    name: "David Chen",
-    avatar: "https://source.unsplash.com/100x100/?portrait,man",
+    name: "Arwa Mohammed",
+    avatar: "/images/Arwa.jpg",
     status: "Online",
   },
   {
-    name: "Sarah Williams",
-    avatar: "https://source.unsplash.com/100x100/?portrait,girl",
+    name: "Toqa Ahmed",
+    avatar: "/images/Toqa.jpg",
     status: "Away",
   },
   {
-    name: "Michael Rodriguez",
-    avatar: "https://source.unsplash.com/100x100/?portrait,boy",
+    name: "Fatma Ibrahim",
+    avatar: "/images/Fatma.jpg",
     status: "Online",
   },
   {
-    name: "Olivia Thompson",
-    avatar: "https://source.unsplash.com/100x100/?portrait,woman2",
+    name: "Mohab Ehab",
+    avatar: "/images/Mohab.jpg",
     status: "Offline",
   },
 ]
@@ -191,7 +191,7 @@ const CommunityPage = () => {
       id: Date.now(), // Use timestamp as a simple ID
       author: {
         name: "You", // In a real app, this would be the current user
-        avatar: "https://source.unsplash.com/100x100/?portrait,user",
+        avatar: "/images/Omar.jpg",
         role: "Member",
       },
       date: "Just now",
@@ -272,7 +272,7 @@ const CommunityPage = () => {
       id: Date.now(),
       author: {
         name: "You", // In a real app, this would be the current user
-        avatar: "https://source.unsplash.com/100x100/?portrait,user",
+        avatar: "/images/Omar.jpg",
       },
       content: commentContent,
       date: "Just now",
@@ -403,7 +403,7 @@ const CommunityPage = () => {
             <Card sx={{ mb: 3, borderRadius: 2 }}>
               <CardContent>
                 <Box sx={{ display: "flex", alignItems: "flex-start", mb: 2 }}>
-                  <Avatar sx={{ mr: 2 }} src="https://source.unsplash.com/100x100/?portrait,user" />
+                  <Avatar sx={{ mr: 2 }} src="/images/Omar.jpg" />
                   <TextField
                     fullWidth
                     multiline
@@ -651,7 +651,7 @@ const CommunityPage = () => {
                         <Box sx={{ display: "flex", mt: 2 }}>
                           <Avatar
                             sx={{ width: 32, height: 32, mr: 1 }}
-                            src="https://source.unsplash.com/100x100/?portrait,user"
+                            src="/images/Omar.jpg"
                           />
                           <TextField
                             fullWidth

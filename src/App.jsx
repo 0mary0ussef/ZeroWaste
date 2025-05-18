@@ -17,6 +17,7 @@ import PaymentPage from "./pages/PaymentPage"
 import PaymentSuccessPage from "./pages/PaymentSuccessPage"
 import ListItemPage from "./pages/ListItemPage"
 import ProfilePage from "./pages/ProfilePage"
+import RedeemPointsPage from "./pages/RedeemPointsPage" // Import the RedeemPointsPage
 import AdminDashboard from "./pages/AdminDashboard"
 import ScrollToTop from "./components/ScrollToTop" // Import the ScrollToTop component
 import ImageLazyLoader from "./components/ImageLazyLoader" // Import the new component
@@ -117,6 +118,8 @@ function App() {
                     <Route path="/signup" element={<SignupPage />} />
                     <Route path="/recycling-tips" element={<RecyclingTipsPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/redeem-points" element={<RedeemPointsPage />} />{" "}
+                    {/* Add the RedeemPointsPage route */}
                     <Route path="/item/:id" element={<ItemDetailsPage />} />
                     <Route path="/payment" element={<PaymentPage />} />
                     <Route path="/payment-success" element={<PaymentSuccessPage />} />
@@ -133,4 +136,3 @@ function App() {
 }
 
 export default App
-

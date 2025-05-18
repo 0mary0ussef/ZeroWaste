@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import {
   Box,
   Container,
@@ -48,7 +49,7 @@ const initialUserData = {
   bio: "Environmental enthusiast passionate about sustainable living and zero waste practices. I believe small changes can make a big difference!",
   avatar: "https://source.unsplash.com/300x300/?portrait,woman",
   joinDate: "January 2023",
-  recyclingPoints: 1250,
+  recyclingPoints: 1350,
   itemsRecycled: 48,
   itemsListed: 12,
   itemsSold: 8,
@@ -151,6 +152,7 @@ const purchaseHistory = [
 ]
 
 const ProfilePage = () => {
+  const navigate = useNavigate()
   const [tabValue, setTabValue] = useState(0)
   const [editMode, setEditMode] = useState(false)
   const [userData, setUserData] = useState(initialUserData)
@@ -187,6 +189,10 @@ const ProfilePage = () => {
       ...userForm,
       [name]: value,
     })
+  }
+
+  const handleRedeemPoints = () => {
+    navigate("/redeem-points")
   }
 
   return (
@@ -397,7 +403,7 @@ const ProfilePage = () => {
                 You can redeem these points for discounts and eco-friendly products!
               </Typography>
               <Box sx={{ mt: 2, textAlign: "center" }}>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={handleRedeemPoints}>
                   Redeem Points
                 </Button>
               </Box>

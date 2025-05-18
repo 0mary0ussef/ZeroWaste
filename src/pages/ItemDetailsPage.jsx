@@ -21,17 +21,17 @@ import {
   ListItemText,
   Chip,
   Avatar,
-  IconButton, // Import IconButton
+  IconButton,
 } from "@mui/material"
 import { Link as RouterLink } from "react-router-dom"
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"
-import LocalShippingIcon from "@mui/icons-material/LocalShipping"
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser"
 import RecyclingIcon from "@mui/icons-material/Recycling"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
+import WhatsAppIcon from "@mui/icons-material/WhatsApp" // Import WhatsApp icon
 
 // Mock data - in a real app, you would fetch this from an API
 const items = [
@@ -41,7 +41,7 @@ const items = [
     description: "A classic leather jacket from the 1980s.",
     longDescription:
       "This authentic vintage leather jacket from the 1980s features a timeless design that never goes out of style. Made from genuine leather, it has been well-maintained and shows minimal signs of wear. The jacket includes a full-length zipper, two side pockets, and an interior pocket. Perfect for adding a retro touch to your wardrobe while reducing fashion waste.",
-    price: 120,
+    price: 850,
     imageUrl: "/images/jackets.jpg",
     additionalImages: ["/images/jackets.jpg", "/images/jackets.jpg", "/images/jackets.jpg"],
     rating: 4.5,
@@ -70,7 +70,7 @@ const items = [
     description: "A stylish chair perfect for any living room.",
     longDescription:
       "This beautiful mid-century modern chair combines style and comfort. The chair features solid wood legs and a comfortable upholstered seat. Its timeless design will complement any living space while adding a touch of retro charm. By choosing this pre-loved piece, you're making an environmentally conscious decision to reduce furniture waste.",
-    price: 250,
+    price: 1200,
     imageUrl: "/images/chair.jpg",
     additionalImages: ["/images/chair.jpg", "/images/chair.jpg", "/images/chair.jpg"],
     rating: 4.8,
@@ -99,7 +99,7 @@ const items = [
     description: "Play all your favorite classic games.",
     longDescription:
       "Relive the golden age of gaming with this retro gaming console. This system comes with two controllers and 20 pre-installed classic games. It's in excellent working condition and has been well-maintained by its previous owner. Perfect for collectors or anyone looking to experience the joy of retro gaming while giving electronic devices a second life.",
-    price: 80,
+    price: 650,
     imageUrl: "/images/console.jpg",
     additionalImages: ["/images/console.jpg", "/images/console.jpg", "/images/console.jpg"],
     rating: 4.2,
@@ -128,7 +128,7 @@ const items = [
     description: "A unique piece of art to brighten up your home.",
     longDescription:
       'Add a splash of color to your home with this vibrant abstract painting. Created by a local artist using eco-friendly paints, this one-of-a-kind piece measures 24" x 36" and comes ready to hang. The painting features bold colors and dynamic brushstrokes that will make a statement in any room. By purchasing this artwork, you\'re supporting sustainable art practices.',
-    price: 180,
+    price: 950,
     imageUrl: "/images/art.jpg",
     additionalImages: ["/images/art.jpg", "/images/art.jpg", "/images/art.jpg"],
     rating: 4.6,
@@ -157,7 +157,7 @@ const items = [
     description: "Stay connected with this feature-rich smartwatch.",
     longDescription:
       "This modern smartwatch offers all the features you need to stay connected and track your fitness goals. With heart rate monitoring, step counting, sleep tracking, and smartphone notifications, it's the perfect companion for an active lifestyle. The watch has been factory refurbished and is in excellent condition with a new battery. By choosing refurbished electronics, you're making an eco-friendly choice.",
-    price: 150,
+    price: 1100,
     imageUrl: "/images/watch.jpg",
     additionalImages: ["/images/watch.jpg", "/images/watch.jpg", "/images/watch.jpg"],
     rating: 4.7,
@@ -186,7 +186,7 @@ const items = [
     description: "A beautiful and durable table for your dining room.",
     longDescription:
       "This handcrafted wooden dining table is made from reclaimed oak, giving it character and environmental value. The table comfortably seats six people and features a smooth, polished surface with natural grain patterns that make each piece unique. The sturdy construction ensures this table will last for generations, making it a sustainable choice for your home.",
-    price: 300,
+    price: 1800,
     imageUrl: "/images/table.jpg",
     additionalImages: ["/images/table.jpg", "/images/table.jpg", "/images/table.jpg"],
     rating: 4.9,
@@ -215,7 +215,7 @@ const items = [
     description: "An elegant dress for special occasions.",
     longDescription:
       "Make a statement at your next event with this elegant designer dress. Previously worn only once for a photoshoot, this dress is in perfect condition. The flowing silhouette and high-quality fabric create a flattering look that's both comfortable and sophisticated. By choosing pre-loved designer clothing, you're participating in sustainable fashion practices.",
-    price: 200,
+    price: 750,
     imageUrl: "/images/dress.jpg",
     additionalImages: ["/images/dress.jpg", "/images/dress.jpg", "/images/dress.jpg"],
     rating: 4.4,
@@ -244,7 +244,7 @@ const items = [
     description: "Experience music like never before with these headphones.",
     longDescription:
       "Immerse yourself in superior sound quality with these high-end headphones. Featuring noise cancellation technology and comfortable over-ear design, these headphones provide an exceptional listening experience. They have been professionally refurbished and tested to ensure they meet the original manufacturer's specifications. By choosing refurbished electronics, you're helping to reduce electronic waste.",
-    price: 220,
+    price: 900,
     imageUrl: "/images/headphone.jpg",
     additionalImages: ["/images/headphone.jpg", "/images/headphone.jpg", "/images/headphone.jpg"],
     rating: 4.8,
@@ -278,6 +278,9 @@ const ItemDetailsPage = () => {
   const [tabValue, setTabValue] = useState(0)
   const [isFavorite, setIsFavorite] = useState(false)
 
+  // WhatsApp contact number
+  const whatsappNumber = "+201027643232"
+
   useEffect(() => {
     // In a real app, you would fetch the item data from an API
     const foundItem = items.find((item) => item.id === Number.parseInt(id))
@@ -304,6 +307,18 @@ const ItemDetailsPage = () => {
 
   const handleToggleFavorite = () => {
     setIsFavorite(!isFavorite)
+  }
+
+  // Function to handle WhatsApp contact
+  const handleContactSeller = () => {
+    // Create message with item details
+    const message = `Hi, I'm interested in your item "${item.name}" priced at ${item.price} EGP on Zero Waste Marketplace.`
+
+    // Create WhatsApp URL with phone number and encoded message
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, "_blank")
   }
 
   if (loading) {
@@ -510,10 +525,10 @@ const ItemDetailsPage = () => {
                 </Button>
                 <Button
                   variant="outlined"
-                  color="primary"
+                  color="success"
                   size="large"
-                  component={RouterLink}
-                  to={`/message?seller=${item.seller.name}`}
+                  startIcon={<WhatsAppIcon />}
+                  onClick={handleContactSeller}
                 >
                   Contact Seller
                 </Button>
@@ -521,12 +536,6 @@ const ItemDetailsPage = () => {
 
               <Box sx={{ mb: 3 }}>
                 <List dense>
-                  <ListItem>
-                    <ListItemIcon>
-                      <LocalShippingIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText primary="Free shipping on orders over 50 EGP" />
-                  </ListItem>
                   <ListItem>
                     <ListItemIcon>
                       <VerifiedUserIcon color="primary" />
