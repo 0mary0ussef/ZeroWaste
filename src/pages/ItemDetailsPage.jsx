@@ -42,8 +42,8 @@ const items = [
     longDescription:
       "This authentic vintage leather jacket from the 1980s features a timeless design that never goes out of style. Made from genuine leather, it has been well-maintained and shows minimal signs of wear. The jacket includes a full-length zipper, two side pockets, and an interior pocket. Perfect for adding a retro touch to your wardrobe while reducing fashion waste.",
     price: 850,
-    imageUrl: "/images/jackets.jpg",
-    additionalImages: ["/images/jackets.jpg", "/images/jackets.jpg", "/images/jackets.jpg"],
+    imageUrl: "/images/Jacket.jpg",
+    additionalImages: ["/images/Jacket.jpg", "/images/Jacket.jpg", "/images/Jacket.jpg"],
     rating: 4.5,
     reviews: 24,
     category: "clothing",
@@ -52,7 +52,7 @@ const items = [
       name: "EcoFashion",
       rating: 4.8,
       sales: 156,
-      avatar: "https://source.unsplash.com/100x100/?portrait",
+      avatar: "/images/Omar.jpg",
     },
     features: [
       "Genuine leather material",
@@ -71,8 +71,8 @@ const items = [
     longDescription:
       "This beautiful mid-century modern chair combines style and comfort. The chair features solid wood legs and a comfortable upholstered seat. Its timeless design will complement any living space while adding a touch of retro charm. By choosing this pre-loved piece, you're making an environmentally conscious decision to reduce furniture waste.",
     price: 1200,
-    imageUrl: "/images/chair.jpg",
-    additionalImages: ["/images/chair.jpg", "/images/chair.jpg", "/images/chair.jpg"],
+    imageUrl: "/images/Chair.jpg",
+    additionalImages: ["/images/Chair.jpg", "/images/Chair.jpg", "/images/Chair.jpg"],
     rating: 4.8,
     reviews: 36,
     category: "furniture",
@@ -81,7 +81,7 @@ const items = [
       name: "VintageFinds",
       rating: 4.9,
       sales: 203,
-      avatar: "https://source.unsplash.com/100x100/?man",
+      avatar: "/images/Omar.jpg",
     },
     features: [
       "Solid wood construction",
@@ -100,8 +100,8 @@ const items = [
     longDescription:
       "Relive the golden age of gaming with this retro gaming console. This system comes with two controllers and 20 pre-installed classic games. It's in excellent working condition and has been well-maintained by its previous owner. Perfect for collectors or anyone looking to experience the joy of retro gaming while giving electronic devices a second life.",
     price: 650,
-    imageUrl: "/images/console.jpg",
-    additionalImages: ["/images/console.jpg", "/images/console.jpg", "/images/console.jpg"],
+    imageUrl: "/images/Console.jpg",
+    additionalImages: ["/images/Console.jpg", "/images/Console.jpg", "/images/Console.jpg"],
     rating: 4.2,
     reviews: 18,
     category: "electronics",
@@ -110,7 +110,7 @@ const items = [
       name: "RetroTech",
       rating: 4.6,
       sales: 89,
-      avatar: "https://source.unsplash.com/100x100/?woman",
+      avatar: "/images/Omar.jpg",
     },
     features: [
       "Includes 2 controllers",
@@ -129,8 +129,8 @@ const items = [
     longDescription:
       'Add a splash of color to your home with this vibrant abstract painting. Created by a local artist using eco-friendly paints, this one-of-a-kind piece measures 24" x 36" and comes ready to hang. The painting features bold colors and dynamic brushstrokes that will make a statement in any room. By purchasing this artwork, you\'re supporting sustainable art practices.',
     price: 950,
-    imageUrl: "/images/art.jpg",
-    additionalImages: ["/images/art.jpg", "/images/art.jpg", "/images/art.jpg"],
+    imageUrl: "/images/Paint.jpg",
+    additionalImages: ["/images/Paint.jpg", "/images/Paint.jpg", "/images/Paint.jpg"],
     rating: 4.6,
     reviews: 12,
     category: "art",
@@ -139,7 +139,7 @@ const items = [
       name: "EcoArtistry",
       rating: 4.7,
       sales: 67,
-      avatar: "https://source.unsplash.com/100x100/?artist",
+      avatar: "/images/Omar.jpg",
     },
     features: [
       "Original artwork",
@@ -158,8 +158,8 @@ const items = [
     longDescription:
       "This modern smartwatch offers all the features you need to stay connected and track your fitness goals. With heart rate monitoring, step counting, sleep tracking, and smartphone notifications, it's the perfect companion for an active lifestyle. The watch has been factory refurbished and is in excellent condition with a new battery. By choosing refurbished electronics, you're making an eco-friendly choice.",
     price: 1100,
-    imageUrl: "/images/watch.jpg",
-    additionalImages: ["/images/watch.jpg", "/images/watch.jpg", "/images/watch.jpg"],
+    imageUrl: "/images/Smart.jpg",
+    additionalImages: ["/images/Smart.jpg", "/images/Smart.jpg", "/images/Smart.jpg"],
     rating: 4.7,
     reviews: 42,
     category: "electronics",
@@ -168,7 +168,7 @@ const items = [
       name: "TechRenewal",
       rating: 4.8,
       sales: 215,
-      avatar: "https://source.unsplash.com/100x100/?tech",
+      avatar: "/images/Omar.jpg",
     },
     features: [
       "Heart rate monitoring",
@@ -187,8 +187,8 @@ const items = [
     longDescription:
       "This handcrafted wooden dining table is made from reclaimed oak, giving it character and environmental value. The table comfortably seats six people and features a smooth, polished surface with natural grain patterns that make each piece unique. The sturdy construction ensures this table will last for generations, making it a sustainable choice for your home.",
     price: 1800,
-    imageUrl: "/images/table.jpg",
-    additionalImages: ["/images/table.jpg", "/images/table.jpg", "/images/table.jpg"],
+    imageUrl: "/images/Table.jpg",
+    additionalImages: ["/images/Table.jpg", "/images/Table.jpg", "/images/Table.jpg"],
     rating: 4.9,
     reviews: 28,
     category: "furniture",
@@ -197,7 +197,7 @@ const items = [
       name: "SustainableCrafts",
       rating: 4.9,
       sales: 124,
-      avatar: "https://source.unsplash.com/100x100/?craftsman",
+      avatar: "/images/Omar.jpg",
     },
     features: [
       "Made from reclaimed oak",
@@ -216,8 +216,8 @@ const items = [
     longDescription:
       "Make a statement at your next event with this elegant designer dress. Previously worn only once for a photoshoot, this dress is in perfect condition. The flowing silhouette and high-quality fabric create a flattering look that's both comfortable and sophisticated. By choosing pre-loved designer clothing, you're participating in sustainable fashion practices.",
     price: 750,
-    imageUrl: "/images/dress.jpg",
-    additionalImages: ["/images/dress.jpg", "/images/dress.jpg", "/images/dress.jpg"],
+    imageUrl: "/images/Dress.jpg",
+    additionalImages: ["/images/Dress.jpg", "/images/Dress.jpg", "/images/Dress.jpg"],
     rating: 4.4,
     reviews: 15,
     category: "clothing",
@@ -226,7 +226,7 @@ const items = [
       name: "FashionForward",
       rating: 4.5,
       sales: 78,
-      avatar: "https://source.unsplash.com/100x100/?fashion",
+      avatar: "/images/Omar.jpg",
     },
     features: [
       "Designer brand",
@@ -245,8 +245,8 @@ const items = [
     longDescription:
       "Immerse yourself in superior sound quality with these high-end headphones. Featuring noise cancellation technology and comfortable over-ear design, these headphones provide an exceptional listening experience. They have been professionally refurbished and tested to ensure they meet the original manufacturer's specifications. By choosing refurbished electronics, you're helping to reduce electronic waste.",
     price: 900,
-    imageUrl: "/images/headphone.jpg",
-    additionalImages: ["/images/headphone.jpg", "/images/headphone.jpg", "/images/headphone.jpg"],
+    imageUrl: "/images/HeadPhone.jpg",
+    additionalImages: ["/images/HeadPhone.jpg", "/images/HeadPhone.jpg", "/images/HeadPhone.jpg"],
     rating: 4.8,
     reviews: 32,
     category: "electronics",
@@ -255,7 +255,7 @@ const items = [
       name: "AudioPhile",
       rating: 4.7,
       sales: 143,
-      avatar: "https://source.unsplash.com/100x100/?dj",
+      avatar: "/images/Omar.jpg",
     },
     features: [
       "Noise cancellation technology",
