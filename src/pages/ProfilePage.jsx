@@ -43,11 +43,11 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping"
 // Initial user data
 const initialUserData = {
   name: "Omar Youssef",
-  email: "omaryoussef@example.com",
+  email: "omaryossef011@gmail.com",
   phone: "+20 102 764 3232",
   address: "6 October",
   bio: "Environmental enthusiast passionate about sustainable living and zero waste practices. I believe small changes can make a big difference!",
-  avatar: "https://source.unsplash.com/300x300/?portrait,woman",
+  avatar: "/images/Omar.jpg",
   joinDate: "January 2023",
   recyclingPoints: 1350,
   itemsRecycled: 48,
@@ -99,7 +99,7 @@ const listedItems = [
     name: "Vintage Leather Jacket",
     price: 120,
     status: "active",
-    image: "https://source.unsplash.com/100x100/?jacket",
+    image: "/images/Jacket.jpg",
     views: 45,
   },
   {
@@ -107,7 +107,7 @@ const listedItems = [
     name: "Handmade Wooden Table",
     price: 300,
     status: "sold",
-    image: "https://source.unsplash.com/100x100/?table",
+    image: "/images/Table.jpg",
     views: 78,
   },
   {
